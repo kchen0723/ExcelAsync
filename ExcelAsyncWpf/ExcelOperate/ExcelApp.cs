@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Core;
 
 namespace ExcelAsyncWpf.ExcelOperate
 {
@@ -34,6 +35,20 @@ namespace ExcelAsyncWpf.ExcelOperate
         private static void m_excelApp_WorkbookActivate(Workbook Wb)
         {
             System.Windows.MessageBox.Show("Workbook Activate");
+        }
+
+        public static void AddContentMenu()
+        {
+            CommandBar cellMenu = CurrentExcel.CommandBars["Cell"];
+            CommandBarButton button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
+            button.Caption = "Test Button";
+            button.Tag = "Test Button";
+            button.OnAction = "OnButtonClick";
+        }
+
+        public static void OnButtonClick()
+        {
+            System.Windows.MessageBox.Show("Hello from context menu");
         }
     }
 }
