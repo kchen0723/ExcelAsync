@@ -116,7 +116,7 @@
           <button id="btnEye" label="Eye" size="large" image="imgEye"></button>
         </group>
         <group id="grpClock" label="Clock">
-          <button id="btnClock" label="Clock" size="large" image="imgClock" onAction="FormatsClick"></button>
+          <button id="btnClock" label="Clock" size="large" image="imgClock" onAction="btnClockClick"></button>
         </group>
         <group id="grpFind" label="data">
           <button id="btnFind" label="Find" size="large" image="imgFind" onAction="FormatsClick"></button>

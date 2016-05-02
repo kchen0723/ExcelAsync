@@ -42,5 +42,10 @@ namespace ExcelAsyncWpf
         {
             MessageBox.Show(control.Id);
         }
+
+        public void btnClockClick(IRibbonControl control)
+        {
+            ExcelOperate.ExcelApp.AddContentMenu();
+        }
     }
 }
