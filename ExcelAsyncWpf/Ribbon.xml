@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui" loadImage="LoadImage">
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui" loadImage="LoadImage" onLoad="RibbonUI_OnLoad">
   <ribbon>
     <tabs>
       <tab id="ExcelAsync" label="ExcelAsync" keytip="S">
@@ -113,14 +113,14 @@
           <button id ="UpdateButton" label="Update" keytip="U" onAction="UpdateButton_Click" imageMso="HighImportance" size="large" visible="false" />
         </group>
         <group id="grpLogo" label="Versions">
-          <button id="btnEye" label="Eye" size="large" image="imgEye"></button>
+          <button id="btnEye" label="Eye" size="large" image="imgEye" onAction="btnEyeClick"></button>
         </group>
         <group id="grpClock" label="Clock">
           <button id="btnClock" label="Clock" size="large" image="imgClock" onAction="btnClockClick"></button>
         </group>
         <group id="grpFind" label="data">
           <button id="btnFind" label="Find" size="large" image="imgFind" onAction="FormatsClick"></button>
-          <button id="btnSingal" label="Retrieve Data" size="large" image="imgSignal" onAction="FunctionsClick"></button>
+          <button id="btnSingal" label="Retrieve Data" size="large" image="imgSignal" onAction="FunctionsClick" getEnabled="OnSignalEnabled"></button>
         </group>
       </tab>
     </tabs>
