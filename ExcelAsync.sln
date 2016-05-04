@@ -1,8 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
-MinimumVisualStudioVersion = 10.0.40219.1
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAsyncWinForm", "ExcelAsyncWinForm\ExcelAsyncWinForm.csproj", "{5FCB506C-1C0C-4994-BA97-1EE19A1CD5E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAsyncWpf", "ExcelAsyncWpf\ExcelAsyncWpf.csproj", "{FA79F15E-060E-4D8A-9C24-019DAE217240}"
