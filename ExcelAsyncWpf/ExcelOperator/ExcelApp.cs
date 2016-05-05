@@ -6,7 +6,7 @@ using System.Text;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Core;
 
-namespace ExcelAsyncWpf.Excel
+namespace ExcelAsyncWpf.ExcelOperator
 {
     public static class ExcelApp
     {

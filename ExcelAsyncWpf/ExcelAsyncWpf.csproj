@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelAsyncWpfAddin.cs" />
-    <Compile Include="Excel\ExcelApp.cs" />
+    <Compile Include="ExcelOperator\ExcelApp.cs" />
     <Compile Include="ExcelTaskUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
