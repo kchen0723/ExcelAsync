@@ -5,7 +5,7 @@ using System.Text;
 
 using Microsoft.Office.Interop.Excel;
 using ExcelDna.Integration;
-using ExcelAsyncWpf.ExcelOperate;
+using ExcelAsyncWpf.Excel;
 
 namespace ExcelAsyncWpf
 {

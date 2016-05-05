@@ -47,7 +47,7 @@ namespace ExcelAsyncWpf
 
         public void btnClockClick(IRibbonControl control)
         {
-            ExcelOperate.ExcelApp.AddContentMenu();
+            Excel.ExcelApp.AddContentMenu();
         }
 
         public void RibbonUI_OnLoad(IRibbonUI ribbonUI)
