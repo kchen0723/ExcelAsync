@@ -1,5 +1,5 @@
 ﻿<DnaLibrary Name="Learn Excel Async Add-In" RuntimeVersion="v4.0">
-  <ExternalLibrary Path="ExcelAsyncWpf.dll" />
+  <ExternalLibrary Path="ExcelAsyncWpf.dll" ComServer="true" />
   <Image Name="imgEye" Path=".\Images\eye.png" Pack="true"/>
   <Image Name="imgClock" Path=".\Images\clock.png" Pack="true"/>
   <Image Name="imgFind" Path=".\Images\find.png" Pack="true"/>

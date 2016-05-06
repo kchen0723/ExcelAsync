@@ -5,6 +5,7 @@ using System.Text;
 
 using Microsoft.Office.Interop.Excel;
 using ExcelDna.Integration;
+using ExcelDna.ComInterop;
 using ExcelAsyncWpf.ExcelOperator;
 
 namespace ExcelAsyncWpf
@@ -15,11 +16,12 @@ namespace ExcelAsyncWpf
         {
             ExcelIntegration.RegisterUnhandledExceptionHandler(globalErrorHandler);
             ExcelApp.CurrentExcel = (ExcelDnaUtil.Application as Application);
+            ComServer.DllRegisterServer();
         }
 
         public void AutoClose()
         {
-            //do nothing here now
+            ComServer.DllUnregisterServer();
         }
 
         public object globalErrorHandler(object ex)
