@@ -23,12 +23,12 @@ namespace ExcelAsyncWpf.Entities
             this.ComEventName = comEventName;
         }
 
-        protected void TriggerComEvent(object eventArgs)
+        protected void TriggerComEvent(object[] eventArgs)
         {
             if (this.ComConsumerObject != null && string.IsNullOrEmpty(this.ComEventName) == false)
             {
                 Type comClassType = this.ComConsumerObject.GetType();
-                comClassType.InvokeMember(this.ComEventName, System.Reflection.BindingFlags.InvokeMethod, null, this.ComConsumerObject, new object[] { eventArgs });
+                comClassType.InvokeMember(this.ComEventName, System.Reflection.BindingFlags.InvokeMethod, null, this.ComConsumerObject, eventArgs);
             }
         }
     }

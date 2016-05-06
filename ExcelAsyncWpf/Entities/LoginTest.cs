@@ -15,7 +15,7 @@ namespace ExcelAsyncWpf.Entities
     {
         public string GetAccessToken(string userName, string password, string clientId)
         {
-            this.TriggerComEvent(DateTime.Now.ToString());
+            this.TriggerComEvent(new object[] { DateTime.Now.ToString(), true, 78, "testingString" });
             return userName + " " + password + " " + clientId + DateTime.Now.ToString();
         }
     }
