@@ -38,6 +38,7 @@ namespace ExcelAsyncWpf
         [ExcelFunction(Description = "TestGreeting you")]
         public static string TestGreeting(string name)
         {
+            ExcelOperator.ReadWriteRange.ReadFromRange();
             return "Hello: " + name + " at " + DateTime.Now.ToString();
         }
     }

@@ -71,6 +71,7 @@
     <Compile Include="ExcelAsyncWpfAddin.cs" />
     <Compile Include="Entities\ComLateBindingEvent.cs" />
     <Compile Include="ExcelOperator\ExcelApp.cs" />
+    <Compile Include="ExcelOperator\ReadWriteRange.cs" />
     <Compile Include="ExcelTaskUtil.cs" />
     <Compile Include="Interfaces\IComLateBindingEvent.cs" />
     <Compile Include="Interfaces\ILoginTest.cs" />

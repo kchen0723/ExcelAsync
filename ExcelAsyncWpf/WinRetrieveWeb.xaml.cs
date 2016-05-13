@@ -55,11 +55,12 @@ namespace ExcelAsyncWpf
                 if (result.ContainsKey("test1"))
                 {
                     string[,] response = result["test1"];
-                    dynamic xlApp = ExcelDnaUtil.Application;
-                    dynamic sheet2 = xlApp.ActiveWorkbook.WorkSheets("Sheet2");
-                    dynamic newSheet = xlApp.ActiveWorkbook.Worksheets.Add(After: sheet2);
-                    dynamic range = newSheet.Range("A1:B" + (response.GetUpperBound(0) + 1).ToString());
-                    range.Value = response;
+                    //dynamic xlApp = ExcelDnaUtil.Application;
+                    //dynamic sheet2 = xlApp.ActiveWorkbook.WorkSheets("Sheet2");
+                    //dynamic newSheet = xlApp.ActiveWorkbook.Worksheets.Add(After: sheet2);
+                    //dynamic range = newSheet.Range("A1:B" + (response.GetUpperBound(0) + 1).ToString());
+                    //range.Value = response;
+                    ExcelOperator.ReadWriteRange.WriteToRange(response);
                 }
                 result.Remove("test1");
             }
