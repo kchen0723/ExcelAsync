@@ -11,11 +11,17 @@ namespace ExcelAsyncWpf.Entities
     [ClassInterface(ClassInterfaceType.None)]
     [ComVisible(true)]
     [ProgId("ExcelAsyncWpf.LoginTest")]
-    public partial class LoginTest : ComLateBindingEvent, ILoginTest
+    public partial class LoginTest : ILoginTest
     {
+        private ComLateBindingEvent m_ComLateBindingEvent = new ComLateBindingEvent();
+        public void AttachEvent(object comConsumer, string comEventName)
+        {
+            this.m_ComLateBindingEvent.AttachEvent(comConsumer, comEventName);
+        }
+
         public string GetAccessToken(string userName, string password, string clientId)
         {
-            this.TriggerComEvent(new object[] { DateTime.Now.ToString(), true, 78, "testingString" });
+            this.m_ComLateBindingEvent.TriggerComEvent(new object[] { DateTime.Now.ToString(), true, 78, "testingString" });
             return userName + " " + password + " " + clientId + DateTime.Now.ToString();
         }
     }
