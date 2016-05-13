@@ -13,17 +13,25 @@ namespace ExcelAsyncWpf
     {
         // The better example is to use HttpClient in System.Net.Http, 
         // which allows cancellation using a CancellationToken...
+        [ExcelFunction(Description = "Test downloading async")]
         public static object TestWebDownloadString(string url)
         {
-            object result = ExcelTaskUtil.RunAsTask("asyncDownloadString", url,
-                () => new WebClient().DownloadString(url));
-            if (result.GetType() == typeof(string))
+            if (string.IsNullOrEmpty(url) == false)
             {
-                return result;
+                object result = ExcelTaskUtil.RunAsTask("asyncDownloadString", url,
+                    () => new WebClient().DownloadString(url));
+                if (result.GetType() == typeof(string))
+                {
+                    return result;
+                }
+                else
+                {
+                    return "processing";
+                }
             }
             else
             {
-                return "processing";
+                return string.Empty;
             }
         }
 
