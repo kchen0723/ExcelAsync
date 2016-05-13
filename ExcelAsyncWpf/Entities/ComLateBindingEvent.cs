@@ -13,22 +13,22 @@ namespace ExcelAsyncWpf.Entities
     [ProgId("ExcelAsyncWpf.ComLateBindingEvent")]
     public partial class ComLateBindingEvent : IComLateBindingEvent
     {
-        public object ComConsumerObject { get; set; }
+        private object m_ComConsumerObject;
 
-        public string ComEventName { get; set; }
+        private string m_ComEventName;
 
         public void AttachEvent(object comConsumer, string comEventName)
         {
-            this.ComConsumerObject = comConsumer;
-            this.ComEventName = comEventName;
+            this.m_ComConsumerObject = comConsumer;
+            this.m_ComEventName = comEventName;
         }
 
-        protected void TriggerComEvent(object[] eventArgs)
+        public void TriggerComEvent(object[] eventArgs)
         {
-            if (this.ComConsumerObject != null && string.IsNullOrEmpty(this.ComEventName) == false)
+            if (this.m_ComConsumerObject != null && string.IsNullOrEmpty(this.m_ComEventName) == false)
             {
-                Type comClassType = this.ComConsumerObject.GetType();
-                comClassType.InvokeMember(this.ComEventName, System.Reflection.BindingFlags.InvokeMethod, null, this.ComConsumerObject, eventArgs);
+                Type comClassType = this.m_ComConsumerObject.GetType();
+                comClassType.InvokeMember(this.m_ComEventName, System.Reflection.BindingFlags.InvokeMethod, null, this.m_ComConsumerObject, eventArgs);
             }
         }
     }

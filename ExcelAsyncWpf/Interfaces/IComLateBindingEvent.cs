@@ -11,8 +11,6 @@ namespace ExcelAsyncWpf.Interfaces
     [ComVisible(true)]
     interface IComLateBindingEvent
     {
-        object ComConsumerObject { get; set; }
-        string ComEventName { get; set; }
         void AttachEvent(object comConsumer, string comEventName);
     }
 }
