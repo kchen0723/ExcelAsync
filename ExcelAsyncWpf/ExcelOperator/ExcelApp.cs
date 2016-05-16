@@ -10,6 +10,7 @@ namespace ExcelAsyncWpf.ExcelOperator
 {
     public static class ExcelApp
     {
+        private static CommandBarButton button = null;
         public static uint ExcelMainUiThreadId { get; set; }
 
         private static Application m_currentExcel;
@@ -41,10 +42,18 @@ namespace ExcelAsyncWpf.ExcelOperator
         {
             CommandBar cellMenu = CurrentExcel.CommandBars["Cell"];
             //There is a bug in below line. One dot is good, too dots are bad.
-            CommandBarButton button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
+            //CommandBarButton button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
+            //button.Caption = "Test Button";
+            //button.Tag = "Test Button";
+            //button.OnAction = "OnButtonClick";
+            button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
             button.Caption = "Test Button";
-            button.Tag = "Test Button";
-            button.OnAction = "OnButtonClick";
+            button.Click += Button_Click;
+        }
+
+        private static void Button_Click(CommandBarButton Ctrl, ref bool CancelDefault)
+        {
+            System.Windows.MessageBox.Show("Hello from context menu");
         }
 
         public static void OnButtonClick()
