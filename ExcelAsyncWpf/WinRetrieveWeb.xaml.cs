@@ -24,6 +24,8 @@ namespace ExcelAsyncWpf
         public WinRetrieveWeb()
         {
             InitializeComponent();
+            this.Top = 100;
+            this.Left = 100;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
