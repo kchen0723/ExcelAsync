@@ -14,7 +14,7 @@ namespace ExcelAsyncWpf.ExcelOperator
         public static uint ExcelMainUiThreadId { get; set; }
 
         private static Application m_currentExcel;
-        public static Application CurrentExcel
+        public static Application Application
         {
             get { return m_currentExcel; }
             set 
@@ -40,7 +40,7 @@ namespace ExcelAsyncWpf.ExcelOperator
 
         public static void AddContentMenu()
         {
-            CommandBar cellMenu = CurrentExcel.CommandBars["Cell"];
+            CommandBar cellMenu = Application.CommandBars["Cell"];
             //There is a bug in below line. One dot is good, too dots are bad.
             //CommandBarButton button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
             //button.Caption = "Test Button";
