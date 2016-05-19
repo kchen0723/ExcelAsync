@@ -29,6 +29,12 @@ namespace ExcelAsyncWpf
         {
             MessageBox.Show("Closing Excel now");
             base.OnDisconnection(RemoveMode, ref custom);
+
+            //Properly release com objects, see: https://www.add-in-express.com/creating-addins-blog/2013/11/05/release-excel-com-objects/
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
         public void HelpButton_Click(IRibbonControl control)
         {
