@@ -13,29 +13,28 @@ namespace ExcelAsyncWpf.ExcelOperator
         private static CommandBarButton button = null;
         public static uint ExcelMainUiThreadId { get; set; }
 
-        private static Application m_currentExcel;
         public static Application Application
         {
-            get { return m_currentExcel; }
-            set 
+            get
             {
-                m_currentExcel = value;
-                if (m_currentExcel != null)
-                {
-                    m_currentExcel.WorkbookNewSheet += new AppEvents_WorkbookNewSheetEventHandler(m_excelApp_WorkbookNewSheet);
-                    m_currentExcel.WorkbookActivate += new AppEvents_WorkbookActivateEventHandler(m_excelApp_WorkbookActivate);
-                }
+                return ExcelDna.Integration.ExcelDnaUtil.Application as Application;
             }
         }
 
-        static void m_excelApp_WorkbookNewSheet(Workbook Wb, object Sh)
+        public static void AttachApplicationEvents()
         {
-            System.Windows.MessageBox.Show("new workbook");
+            Application.WorkbookActivate += Application_WorkbookActivate;
+            Application.WorkbookNewSheet += Application_WorkbookNewSheet;
         }
 
-        private static void m_excelApp_WorkbookActivate(Workbook Wb)
+        static void Application_WorkbookNewSheet(Workbook Wb, object Sh)
         {
-            System.Windows.MessageBox.Show("Workbook Activate");
+            System.Windows.MessageBox.Show("Application_WorkbookNewSheet");
+        }
+
+        private static void Application_WorkbookActivate(Workbook Wb)
+        {
+            System.Windows.MessageBox.Show("Application_WorkbookActivate");
         }
 
         public static void AddContentMenu()

@@ -15,8 +15,8 @@ namespace ExcelAsyncWpf
         public void AutoOpen()
         {
             ExcelIntegration.RegisterUnhandledExceptionHandler(globalErrorHandler);
-            ExcelApp.Application = (ExcelDnaUtil.Application as Application);
             ComServer.DllRegisterServer();
+            ExcelApp.AttachApplicationEvents();
         }
 
         public void AutoClose()
