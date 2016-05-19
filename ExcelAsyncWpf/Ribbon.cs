@@ -9,6 +9,7 @@ using System.Windows;
 
 using ExcelDna.Integration;
 using ExcelDna.Integration.CustomUI;
+using ExcelDna.Integration.Extensibility;
 
 namespace ExcelAsyncWpf
 {
@@ -24,6 +25,11 @@ namespace ExcelAsyncWpf
             return doc.InnerXml;
         }
 
+        public override void OnDisconnection(ext_DisconnectMode RemoveMode, ref Array custom)
+        {
+            MessageBox.Show("Closing Excel now");
+            base.OnDisconnection(RemoveMode, ref custom);
+        }
         public void HelpButton_Click(IRibbonControl control)
         {
             MessageBox.Show(control.Id);
