@@ -15,8 +15,16 @@ namespace ExcelAsyncWpf
         public void AutoOpen()
         {
             ExcelIntegration.RegisterUnhandledExceptionHandler(globalErrorHandler);
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ComServer.DllRegisterServer();
             ExcelApp.AttachApplicationEvents();
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception ex = e.ExceptionObject as Exception;
+            System.Windows.MessageBox.Show("Excel cannot recover from error: " + ex.Message);
+            Environment.Exit(-1);
         }
 
         public void AutoClose()
