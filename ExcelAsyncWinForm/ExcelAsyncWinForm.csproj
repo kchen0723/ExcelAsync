@@ -87,13 +87,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExcelDna-0.33.9\Source\ExcelDna.Integration\ExcelDna.Integration.csproj">
+    <EmbeddedResource Include="Ribbon.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ExcelDna\Source\ExcelDna.Integration\ExcelDna.Integration.csproj">
       <Project>{196735bc-5a5c-4a21-9fe4-ec01cb7f3de9}</Project>
       <Name>ExcelDna.Integration</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Ribbon.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
