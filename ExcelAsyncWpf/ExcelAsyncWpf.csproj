@@ -72,6 +72,7 @@
     <Compile Include="Entities\ComLateBindingEvent.cs" />
     <Compile Include="ExcelOperator\CustomPropertyManager.cs" />
     <Compile Include="ExcelOperator\ExcelApp.cs" />
+    <Compile Include="ExcelOperator\ExcelUIThreadProtecter.cs" />
     <Compile Include="ExcelOperator\RangeManager.cs" />
     <Compile Include="ExcelOperator\ReadWriteRange.cs" />
     <Compile Include="ExcelTaskUtil.cs" />
