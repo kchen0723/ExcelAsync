@@ -48,7 +48,7 @@ namespace ExcelAsyncWpf
 
         public void FunctionsClick(IRibbonControl control)
         {
-            ShowWindowHelper<WinRetrieveWeb>.ShowWindow(WinRetrieveWebCreatedHandler);
+            ShowWindowHelper.ShowWindow<WinRetrieveWeb>(WinRetrieveWebCreatedHandler);
             //MessageBox.Show(control.Id);
         }
 
@@ -57,7 +57,7 @@ namespace ExcelAsyncWpf
             WinRetrieveWeb win = sender as WinRetrieveWeb;
             if (win != null)
             {
-                ShowWindowHelper<WinRetrieveWeb>.SetOwnerToExcel(win);
+                ShowWindowHelper.SetOwnerToExcel(win);
                 win.Left = 300;
                 win.Top = 300;
             }

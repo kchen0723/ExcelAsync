@@ -9,19 +9,19 @@ using System.Windows.Threading;
 
 namespace ExcelAsyncWpf
 {
-    public class ShowWindowHelper<T> where T : Window, new()
+    public class ShowWindowHelper
     {
         private static Thread m_thread;
 
-        public static void ShowWindow(EventHandler winCreatedHandler)
+        public static void ShowWindow<T>(EventHandler winCreatedHandler) where T : Window, new()
         {
-            m_thread = new Thread(new ParameterizedThreadStart(dipatchWindow));
+            m_thread = new Thread(new ParameterizedThreadStart(dipatchWindow<T>));
             m_thread.SetApartmentState(ApartmentState.STA);
             m_thread.IsBackground = true;
             m_thread.Start(winCreatedHandler);
         }
 
-        private static void dipatchWindow(object winCreatedHandler)
+        private static void dipatchWindow<T>(object winCreatedHandler) where T : Window, new()
         {
             T win = new T();
             (winCreatedHandler as EventHandler)?.Invoke(win, EventArgs.Empty);
