@@ -94,9 +94,6 @@
     <Compile Include="Ribbon.cs" />
     <Compile Include="ShowWindowHelper.cs" />
     <Compile Include="TestFormulas.cs" />
-    <Compile Include="WinRetrieveWeb.xaml.cs">
-      <DependentUpon>WinRetrieveWeb.xaml</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -127,12 +124,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Ribbon.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="WinRetrieveWeb.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ExcelDna\Source\ExcelDna.Integration\ExcelDna.Integration.csproj">
