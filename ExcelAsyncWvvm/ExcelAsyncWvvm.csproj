@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FA79F15E-060E-4D8A-9C24-019DAE217240}</ProjectGuid>
+    <ProjectGuid>{1BCFCB6D-F544-4A8C-838E-BE1C531BE723}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExcelAsyncWpf</RootNamespace>
-    <AssemblyName>ExcelAsyncWpf</AssemblyName>
+    <RootNamespace>ExcelAsyncWvvm</RootNamespace>
+    <AssemblyName>ExcelAsyncWvvm</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -37,21 +37,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\Excel2007 PIA\Microsoft.Office.Interop.Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Vbe.Interop, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\Excel2007 PIA\Microsoft.Vbe.Interop.dll</HintPath>
-    </Reference>
-    <Reference Include="office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\Excel2007 PIA\office.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -67,17 +52,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\LoginTest.cs" />
-    <Compile Include="ExcelAsyncWpfAddin.cs" />
-    <Compile Include="Entities\ComLateBindingEvent.cs" />
-    <Compile Include="ExcelOperator\CustomPropertyManager.cs" />
-    <Compile Include="ExcelOperator\ExcelApp.cs" />
-    <Compile Include="ExcelOperator\ExcelUIThreadProtecter.cs" />
-    <Compile Include="ExcelOperator\RangeManager.cs" />
-    <Compile Include="ExcelOperator\ReadWriteRange.cs" />
-    <Compile Include="ExcelTaskUtil.cs" />
-    <Compile Include="Interfaces\IComLateBindingEvent.cs" />
-    <Compile Include="Interfaces\ILoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -91,9 +65,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Ribbon.cs" />
-    <Compile Include="ShowWindowHelper.cs" />
-    <Compile Include="TestFormulas.cs" />
     <Compile Include="WinRetrieveWeb.xaml.cs">
       <DependentUpon>WinRetrieveWeb.xaml</DependentUpon>
     </Compile>
@@ -101,12 +72,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ExcelAsyncWpf.dna">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ExcelAsyncWpf.xll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -114,35 +79,16 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\clock.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\eye.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\find.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\signal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <EmbeddedResource Include="Ribbon.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="WinRetrieveWeb.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\ExcelDna\Source\ExcelDna.Integration\ExcelDna.Integration.csproj">
       <Project>{196735bc-5a5c-4a21-9fe4-ec01cb7f3de9}</Project>
       <Name>ExcelDna.Integration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ExcelAsyncWvvm\ExcelAsyncWvvm.csproj">
-      <Project>{1bcfcb6d-f544-4a8c-838e-be1c531be723}</Project>
-      <Name>ExcelAsyncWvvm</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="WinRetrieveWeb.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

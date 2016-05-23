@@ -48,16 +48,17 @@ namespace ExcelAsyncWpf
 
         public void FunctionsClick(IRibbonControl control)
         {
-            ShowWindowHelper.ShowWindow<WinRetrieveWeb>(WinRetrieveWebCreatedHandler);
+            ShowWindowHelper.ShowWindow<ExcelAsyncWvvm.WinRetrieveWeb>(WinRetrieveWebCreatedHandler);
             //MessageBox.Show(control.Id);
         }
 
         private void WinRetrieveWebCreatedHandler(object sender, EventArgs e)
         {
-            WinRetrieveWeb win = sender as WinRetrieveWeb;
+            ExcelAsyncWvvm.WinRetrieveWeb win = sender as ExcelAsyncWvvm.WinRetrieveWeb;
             if (win != null)
             {
                 ShowWindowHelper.SetOwnerToExcel(win);
+                win.WriteToRangeHandler = ExcelOperator.ReadWriteRange.WriteToRange;
                 win.Left = 300;
                 win.Top = 300;
             }
