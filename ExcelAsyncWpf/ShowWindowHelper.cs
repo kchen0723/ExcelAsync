@@ -13,34 +13,27 @@ namespace ExcelAsyncWpf
     {
         private static Thread m_thread;
 
-        public static void ShowWindow()
-        {
-            ShowWindow(true);
-        }
-
-        public static void ShowWindow(bool isSetOwnerToExcel)
+        public static void ShowWindow(EventHandler winCreatedHandler)
         {
             m_thread = new Thread(new ParameterizedThreadStart(dipatchWindow));
             m_thread.SetApartmentState(ApartmentState.STA);
             m_thread.IsBackground = true;
-            m_thread.Start(isSetOwnerToExcel);
+            m_thread.Start(winCreatedHandler);
         }
 
-        private static void dipatchWindow(object isSetOwnerToExcel)
+        private static void dipatchWindow(object winCreatedHandler)
         {
             T win = new T();
-            if (isSetOwnerToExcel.GetType() == typeof(Boolean))
-            {
-                bool isSetOwner = (bool)isSetOwnerToExcel;
-                if (isSetOwner == true)
-                {
-                    WindowInteropHelper interop = new WindowInteropHelper(win);
-                    interop.Owner = ExcelDna.Integration.ExcelDnaUtil.WindowHandle;
-                }
-            }
+            (winCreatedHandler as EventHandler)?.Invoke(win, EventArgs.Empty);
             win.Show();
             win.Closed += (sender, e) => win.Dispatcher.InvokeShutdown();
             Dispatcher.Run();
+        }
+
+        public static void SetOwnerToExcel(Window win)
+        {
+            WindowInteropHelper interop = new WindowInteropHelper(win);
+            interop.Owner = ExcelDna.Integration.ExcelDnaUtil.WindowHandle;
         }
     }
 }
