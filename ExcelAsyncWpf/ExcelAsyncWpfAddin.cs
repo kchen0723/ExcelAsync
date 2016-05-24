@@ -18,6 +18,7 @@ namespace ExcelAsyncWpf
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ComServer.DllRegisterServer();
             ExcelApp.AttachApplicationEvents();
+            this.InjectWvvwDelegate();
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -35,6 +36,11 @@ namespace ExcelAsyncWpf
         public object globalErrorHandler(object ex)
         {
             return ex.ToString();
+        }
+
+        private void InjectWvvwDelegate()
+        {
+            ExcelAsyncWvvm.ExcelHandler.WriteToRangeHandler = ExcelOperator.ReadWriteRange.WriteToRange;
         }
     }
 }

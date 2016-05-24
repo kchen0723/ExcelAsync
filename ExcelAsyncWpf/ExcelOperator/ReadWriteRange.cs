@@ -8,7 +8,7 @@ namespace ExcelAsyncWpf.ExcelOperator
 {
     public class ReadWriteRange
     {
-        public static bool WriteToRange(string[,] response)
+        public static bool WriteToRange(object[,] response)
         {
             ExcelReference sheet2 = XlCall.Excel(XlCall.xlSheetId, "Sheet2") as ExcelReference;
             int rowsCount = response.GetLength(0);

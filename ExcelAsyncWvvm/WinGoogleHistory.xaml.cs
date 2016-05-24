@@ -32,7 +32,11 @@ namespace ExcelAsyncWvvm
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            object[,] result = GoogleHistoryManager.GoogleHistory(this.tbSecurityId.Text, DateTime.Parse(this.tbStartDate.Text), DateTime.Parse(this.tbEndDate.Text));
+            if (ExcelHandler.WriteToRangeHandler != null)
+            {
+                ExcelHandler.WriteToRangeHandler(result);
+            }
         }
     }
 }
