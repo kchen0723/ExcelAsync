@@ -24,7 +24,11 @@ namespace ExcelAsyncWpf
         private static void dipatchWindow<T>(object winCreatedHandler) where T : Window, new()
         {
             T win = new T();
-            (winCreatedHandler as EventHandler)?.Invoke(win, EventArgs.Empty);
+            EventHandler handler = winCreatedHandler as EventHandler;
+            if (handler != null)
+            {
+                handler(win, EventArgs.Empty);
+            }
             win.Show();
             win.Closed += (sender, e) => win.Dispatcher.InvokeShutdown();
             Dispatcher.Run();

@@ -65,7 +65,10 @@ namespace ExcelAsyncWvvm
                     //dynamic range = newSheet.Range("A1:B" + (response.GetUpperBound(0) + 1).ToString());
                     //range.Value = response;
                     //ExcelOperator.ReadWriteRange.WriteToRange(response);
-                    WriteToRangeHandler?.Invoke(response);
+                    if(this.WriteToRangeHandler != null)
+                    {
+                        this.WriteToRangeHandler(response);
+                    }
                 }
                 result.Remove("test1");
             }
