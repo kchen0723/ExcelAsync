@@ -48,7 +48,11 @@ namespace ExcelAsyncWvvm
                     item[i, 1] = input[i];
                 }
                 result.Add("test1", item);
-                ExcelAsyncUtil.QueueAsMacro(postToExcel);
+                //ExcelAsyncUtil.QueueAsMacro(postToExcel);
+                if (ExcelHandler.QueueToRunUIThreadHandler != null)
+                {
+                    ExcelHandler.QueueToRunUIThreadHandler(postToExcel);
+                }
             }
         }
 

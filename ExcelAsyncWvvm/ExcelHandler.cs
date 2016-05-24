@@ -9,5 +9,6 @@ namespace ExcelAsyncWvvm
     {
         public static Func<object[,], bool> WriteToRangeHandler { get; set; }
 
+        public static Action<ExcelDna.Integration.ExcelAction> QueueToRunUIThreadHandler { get; set; }
     }
 }
