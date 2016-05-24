@@ -119,7 +119,7 @@
           <button id="btnClock" label="Clock" size="large" image="imgClock" onAction="btnClockClick"></button>
         </group>
         <group id="grpFind" label="data">
-          <button id="btnFind" label="Find" size="large" image="imgFind" onAction="FormatsClick"></button>
+          <button id="btnFind" label="Google History" size="large" image="imgFind" onAction="GoogleHistoryClick"></button>
           <button id="btnSingal" label="Retrieve Data" size="large" image="imgSignal" onAction="FunctionsClick" getEnabled="OnSignalEnabled"></button>
         </group>
       </tab>

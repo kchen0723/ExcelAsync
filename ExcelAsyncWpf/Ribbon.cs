@@ -52,6 +52,12 @@ namespace ExcelAsyncWpf
             //MessageBox.Show(control.Id);
         }
 
+        public void GoogleHistoryClick(IRibbonControl control)
+        {
+            ShowWindowHelper.ShowWindow<ExcelAsyncWvvm.WinGoogleHistory>(null);
+            //MessageBox.Show(control.Id);
+        }
+
         private void WinRetrieveWebCreatedHandler(object sender, EventArgs e)
         {
             ExcelAsyncWvvm.WinRetrieveWeb win = sender as ExcelAsyncWvvm.WinRetrieveWeb;

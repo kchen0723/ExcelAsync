@@ -21,7 +21,12 @@ namespace ExcelAsyncWvvm
             {'a', "Adj Close"}
         };
 
-        public static object[,] GoogleHistory(string secId, double dblStartDate, double dblEndDate, string period, string names, bool showHeaders, bool dateOrder)
+        public static object[,] GoogleHistory(string secId, DateTime dblStartDate, DateTime dblEndDate)
+        {
+            return GoogleHistory(secId, dblStartDate.ToOADate(), dblEndDate.ToOADate(), "d", "dohlcv", false, false);
+        }
+
+        private static object[,] GoogleHistory(string secId, double dblStartDate, double dblEndDate, string period, string names, bool showHeaders, bool dateOrder)
         {
             DateTime startDate = (dblStartDate == 0) ? DateTime.Today.AddYears(-1) : DateTime.FromOADate(dblStartDate);
             DateTime endDate = (dblEndDate == 0) ? DateTime.Today : DateTime.FromOADate(dblEndDate);
@@ -104,7 +109,7 @@ namespace ExcelAsyncWvvm
             return ImportCSV(url, 1 - headerOffset, dateOrder, new string[] { dateFormat, "double" }, showHeaders);
         }
 
-        public static object[,] ImportCSV(string url, int startLine, bool reverse, object[] formats, bool hasHeaders)
+        private static object[,] ImportCSV(string url, int startLine, bool reverse, object[] formats, bool hasHeaders)
         {
             CsvParseFormat formatter = new CsvParseFormat();
             WebRequest request;

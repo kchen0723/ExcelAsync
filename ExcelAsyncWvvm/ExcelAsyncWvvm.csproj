@@ -66,6 +66,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="WinGoogleHistory.xaml.cs">
+      <DependentUpon>WinGoogleHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinRetrieveWeb.xaml.cs">
       <DependentUpon>WinRetrieveWeb.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="WinGoogleHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WinRetrieveWeb.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
