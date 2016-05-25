@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAsyncWinForm", "ExcelAsyncWinForm\ExcelAsyncWinForm.csproj", "{5FCB506C-1C0C-4994-BA97-1EE19A1CD5E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAsyncWpf", "ExcelAsyncWpf\ExcelAsyncWpf.csproj", "{FA79F15E-060E-4D8A-9C24-019DAE217240}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Integration", "..\ExcelDna\Source\ExcelDna.Integration\ExcelDna.Integration.csproj", "{196735BC-5A5C-4A21-9FE4-EC01CB7F3DE9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAsyncWvvm", "ExcelAsyncWvvm\ExcelAsyncWvvm.csproj", "{1BCFCB6D-F544-4A8C-838E-BE1C531BE723}"
@@ -21,10 +19,6 @@ Global
 		{5FCB506C-1C0C-4994-BA97-1EE19A1CD5E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FCB506C-1C0C-4994-BA97-1EE19A1CD5E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FCB506C-1C0C-4994-BA97-1EE19A1CD5E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA79F15E-060E-4D8A-9C24-019DAE217240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA79F15E-060E-4D8A-9C24-019DAE217240}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA79F15E-060E-4D8A-9C24-019DAE217240}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA79F15E-060E-4D8A-9C24-019DAE217240}.Release|Any CPU.Build.0 = Release|Any CPU
 		{196735BC-5A5C-4A21-9FE4-EC01CB7F3DE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{196735BC-5A5C-4A21-9FE4-EC01CB7F3DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{196735BC-5A5C-4A21-9FE4-EC01CB7F3DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
