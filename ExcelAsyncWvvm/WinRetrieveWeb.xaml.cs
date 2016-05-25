@@ -10,7 +10,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ExcelDna.Integration;
 
 namespace ExcelAsyncWvvm
 {
@@ -20,8 +19,6 @@ namespace ExcelAsyncWvvm
     public partial class WinRetrieveWeb : Window
     {
         private Dictionary<string, string[,]> result = new Dictionary<string, string[,]>();
-
-        public Func<string[,], bool> WriteToRangeHandler { get; set;}
 
         public WinRetrieveWeb()
         {
@@ -49,10 +46,7 @@ namespace ExcelAsyncWvvm
                 }
                 result.Add("test1", item);
                 //ExcelAsyncUtil.QueueAsMacro(postToExcel);
-                if (ExcelHandler.QueueToRunUIThreadHandler != null)
-                {
-                    ExcelHandler.QueueToRunUIThreadHandler(postToExcel);
-                }
+                postToExcel();   //we can use background worker to do it async. then call postToexcel when it finished.
             }
         }
 
@@ -69,9 +63,9 @@ namespace ExcelAsyncWvvm
                     //dynamic range = newSheet.Range("A1:B" + (response.GetUpperBound(0) + 1).ToString());
                     //range.Value = response;
                     //ExcelOperator.ReadWriteRange.WriteToRange(response);
-                    if(this.WriteToRangeHandler != null)
+                    if (ExcelHandler.WriteToRangeHandler != null)
                     {
-                        this.WriteToRangeHandler(response);
+                        ExcelHandler.WriteToRangeHandler(response);
                     }
                 }
                 result.Remove("test1");

@@ -8,7 +8,7 @@ namespace ExcelAsyncWpf.ExcelOperator
 {
     public class ReadWriteRange
     {
-        public static bool WriteToRange(object[,] response)
+        internal static bool WriteToRange(object[,] response)
         {
             //ExcelReference sheet2 = XlCall.Excel(XlCall.xlSheetId, "Sheet2") as ExcelReference;
             Microsoft.Office.Interop.Excel.Range activeCell = ExcelApp.Application.ActiveCell;
@@ -20,7 +20,7 @@ namespace ExcelAsyncWpf.ExcelOperator
             return target.SetValue(response);
         }
 
-        public static object[,] ReadFromRange()
+        internal static object[,] ReadFromRange()
         {
             object[,] result = null;
             ExcelReference selection = new ExcelReference(0, 4, 0, 2);

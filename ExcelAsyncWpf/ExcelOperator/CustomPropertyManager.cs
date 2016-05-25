@@ -26,7 +26,7 @@ namespace ExcelAsyncWpf.ExcelOperator
             return result;
         }
 
-        public static string GetWorkbookPropertyString(Workbook wk, string name)
+        internal static string GetWorkbookPropertyString(Workbook wk, string name)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             string result = string.Empty;
@@ -38,7 +38,7 @@ namespace ExcelAsyncWpf.ExcelOperator
             return result;
         }
 
-        public static void SetWorkbookProperty(Workbook wk, string propertyName, string propertyValue)
+        internal static void SetWorkbookProperty(Workbook wk, string propertyName, string propertyValue)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             dynamic cp = GetWorkbookCustomProperty(wk, propertyName);
@@ -68,7 +68,7 @@ namespace ExcelAsyncWpf.ExcelOperator
             return result;
         }
 
-        public static string GetWorksheetPropertyString(Worksheet ws, string name)
+        internal static string GetWorksheetPropertyString(Worksheet ws, string name)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             string result = string.Empty;
@@ -80,7 +80,7 @@ namespace ExcelAsyncWpf.ExcelOperator
             return result;
         }
 
-        public static void SetWorksheetProperty(Worksheet ws, string propertyName, string propertyValue)
+        internal static void SetWorksheetProperty(Worksheet ws, string propertyName, string propertyValue)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             dynamic cp = GetWorksheetCusotmProperty(ws, propertyName);

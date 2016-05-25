@@ -52,7 +52,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityManager.cs" />
     <Compile Include="ExcelHandler.cs" />
     <Compile Include="GoogleHistoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -83,12 +82,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ExcelDna\Source\ExcelDna.Integration\ExcelDna.Integration.csproj">
-      <Project>{196735bc-5a5c-4a21-9fe4-ec01cb7f3de9}</Project>
-      <Name>ExcelDna.Integration</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="WinGoogleHistory.xaml">

@@ -8,9 +8,8 @@ namespace ExcelAsyncWpf.ExcelOperator
 {
     public static class RangeManager
     {
-        public static Name GetName(Workbook wk, string rangeName)
+        private static Name GetName(Workbook wk, string rangeName)
         {
-            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             try
             {
                 return wk.Names.Item(rangeName);
@@ -21,7 +20,7 @@ namespace ExcelAsyncWpf.ExcelOperator
             }
         }
 
-        public static Range GetNameRange(Name name)
+        internal static Range GetNameRange(Name name)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             try
@@ -34,9 +33,8 @@ namespace ExcelAsyncWpf.ExcelOperator
             }
         }
 
-        public static ListObject GetListObject(Worksheet sheet, string rangeName)
+        private static ListObject GetListObject(Worksheet sheet, string rangeName)
         {
-            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             try
             {
                 return sheet.ListObjects[rangeName];
@@ -47,7 +45,7 @@ namespace ExcelAsyncWpf.ExcelOperator
             }
         }
 
-        public static Range GetListObjectRange(ListObject listObject)
+        internal static Range GetListObjectRange(ListObject listObject)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             try
@@ -60,7 +58,7 @@ namespace ExcelAsyncWpf.ExcelOperator
             }
         }
 
-        public static Range GetRange(Worksheet ws, string rangeName)
+        internal static Range GetRange(Worksheet ws, string rangeName)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             Range result = null;

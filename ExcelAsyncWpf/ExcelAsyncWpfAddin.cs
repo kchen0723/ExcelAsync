@@ -40,8 +40,7 @@ namespace ExcelAsyncWpf
 
         private void InjectWvvwDelegate()
         {
-            ExcelAsyncWvvm.ExcelHandler.WriteToRangeHandler = ExcelOperator.ReadWriteRange.WriteToRange;
-            ExcelAsyncWvvm.ExcelHandler.QueueToRunUIThreadHandler = ExcelAsyncUtil.QueueAsMacro;
+            ExcelAsyncWvvm.ExcelHandler.WriteToRangeHandler = EntityLogic.EntityManager.WriteToRange;
         }
     }
 }

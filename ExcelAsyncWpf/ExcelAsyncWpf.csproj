@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\LoginTest.cs" />
+    <Compile Include="EntityLogic\EntityManager.cs" />
     <Compile Include="ExcelAsyncWpfAddin.cs" />
     <Compile Include="Entities\ComLateBindingEvent.cs" />
     <Compile Include="ExcelOperator\CustomPropertyManager.cs" />

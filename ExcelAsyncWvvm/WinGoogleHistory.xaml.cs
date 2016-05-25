@@ -34,12 +34,10 @@ namespace ExcelAsyncWvvm
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             result = GoogleHistoryManager.GoogleHistory(this.tbSecurityId.Text, DateTime.Parse(this.tbStartDate.Text), DateTime.Parse(this.tbEndDate.Text));
-            ExcelHandler.QueueToRunUIThreadHandler(postToExcel);
-        }
-
-        private void postToExcel()
-        {
-            EntityManager.WriteToRange(result);
+            if (ExcelHandler.WriteToRangeHandler != null)
+            {
+                ExcelHandler.WriteToRangeHandler(result);
+            }
         }
     }
 }

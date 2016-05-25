@@ -64,7 +64,6 @@ namespace ExcelAsyncWpf
             if (win != null)
             {
                 ShowWindowHelper.SetOwnerToExcel(win);
-                win.WriteToRangeHandler = ExcelOperator.ReadWriteRange.WriteToRange;
                 win.Left = 300;
                 win.Top = 300;
             }
