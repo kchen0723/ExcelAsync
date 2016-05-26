@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Formula\Limitations of formulas.txt" />
     <Content Include="Images\clock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

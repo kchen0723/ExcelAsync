@@ -1,0 +1,11 @@
+http://support.microsoft.com/kb/170787
+
+A user-defined function called by a formula in a worksheet cell cannot change the environment of Microsoft Excel. This means that such a function cannot do any of the following:
+    Insert, delete, or format cells on the spreadsheet.
+    Change another cell's value.
+    Move, rename, delete, or add sheets to a workbook.
+    Change any of the environment options, such as calculation mode or screen views.
+    Add names to a workbook.
+    Set properties or execute most methods. 
+
+And UDF will ignore application.ontime statement.
