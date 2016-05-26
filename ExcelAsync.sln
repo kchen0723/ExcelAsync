@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAsyncWinForm", "ExcelA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Integration", "..\ExcelDna\Source\ExcelDna.Integration\ExcelDna.Integration.csproj", "{196735BC-5A5C-4A21-9FE4-EC01CB7F3DE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAsyncWvvm", "ExcelAsyncWvvm\ExcelAsyncWvvm.csproj", "{1BCFCB6D-F544-4A8C-838E-BE1C531BE723}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAsync", "ExcelAsync\ExcelAsync.csproj", "{6E55A086-3ADC-449F-90C5-730FBB055407}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelWvvm", "ExcelWvvm\ExcelWvvm.csproj", "{A9707B43-8057-4AFC-90DA-CC28BD01EC1C}"
@@ -25,10 +23,6 @@ Global
 		{196735BC-5A5C-4A21-9FE4-EC01CB7F3DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{196735BC-5A5C-4A21-9FE4-EC01CB7F3DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{196735BC-5A5C-4A21-9FE4-EC01CB7F3DE9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1BCFCB6D-F544-4A8C-838E-BE1C531BE723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BCFCB6D-F544-4A8C-838E-BE1C531BE723}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BCFCB6D-F544-4A8C-838E-BE1C531BE723}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BCFCB6D-F544-4A8C-838E-BE1C531BE723}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6E55A086-3ADC-449F-90C5-730FBB055407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6E55A086-3ADC-449F-90C5-730FBB055407}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E55A086-3ADC-449F-90C5-730FBB055407}.Release|Any CPU.ActiveCfg = Release|Any CPU
