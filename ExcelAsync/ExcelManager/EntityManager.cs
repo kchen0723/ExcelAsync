@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Microsoft.Office.Interop.Excel;
+
 namespace ExcelAsync.ExcelManager
 {
     public class EntityManager
@@ -17,7 +19,8 @@ namespace ExcelAsync.ExcelManager
 
         private static void writeRangeToExcel()
         {
-            ExcelOperator.ReadWriteRange.WriteToRange(m_result);
+            Range result = ExcelOperator.ReadWriteRange.WriteToRange(m_result);
+            result.Name = "kissingerTest1";
         }
     }
 }

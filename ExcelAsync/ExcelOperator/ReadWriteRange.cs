@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using ExcelDna.Integration;
 
+using Microsoft.Office.Interop.Excel;
+
 namespace ExcelAsync.ExcelOperator
 {
     internal class ReadWriteRange
     {
-        internal static bool WriteToRange(object[,] response)
+        internal static Range WriteToRange(object[,] response)
         {
             //ExcelReference sheet2 = XlCall.Excel(XlCall.xlSheetId, "Sheet2") as ExcelReference;
             Microsoft.Office.Interop.Excel.Range activeCell = ExcelApp.Application.ActiveCell;
@@ -16,8 +18,9 @@ namespace ExcelAsync.ExcelOperator
             int columnsCount = response.GetLength(1);
             //ExcelReference target = new ExcelReference(0, rowsCount - 1, 0, columnsCount - 1, sheet2.SheetId);
             string address = activeCell.Address;
-            ExcelReference target = new ExcelReference(activeCell.Row, activeCell.Row + rowsCount - 1, activeCell.Column, activeCell.Column + columnsCount - 1);
-            return target.SetValue(response);
+            ExcelReference target = new ExcelReference(activeCell.Row - 1, activeCell.Row + rowsCount - 2, activeCell.Column - 1, activeCell.Column + columnsCount - 2);
+            target.SetValue(response);
+            return activeCell.Resize[rowsCount, columnsCount];
         }
 
         internal static object[,] ReadFromRange()
