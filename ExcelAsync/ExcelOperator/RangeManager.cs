@@ -8,73 +8,191 @@ namespace ExcelAsync.ExcelOperator
 {
     internal static class RangeManager
     {
-        private static Name GetName(Workbook wk, string rangeName)
-        {
-            try
-            {
-                return wk.Names.Item(rangeName);
-            }
-            catch  //ignore error here
-            {
-                return null;
-            }
-        }
-
-        internal static Range GetNameRange(Name name)
+        internal static Name GetName(Workbook wk, string rangeName)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
-            try
+            Name result = null;
+            if (wk != null && string.IsNullOrEmpty(rangeName) == false)
             {
-                return name.RefersToRange;
+                try
+                {
+                    result = wk.Names.Item(rangeName);
+                }
+                catch  //ignore error here
+                {
+                }
             }
-            catch //ignore error here
-            {
-                return null;
-            }
+            return result;
         }
 
-        private static ListObject GetListObject(Worksheet sheet, string rangeName)
+        internal static Range GetRangeOfName(Name name)
         {
-            try
+            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
+            Range result = null;
+            if (name != null)
             {
-                return sheet.ListObjects[rangeName];
+                try
+                {
+                    result = name.RefersToRange;
+                }
+                catch //ignore error here
+                {
+                }
             }
-            catch  //ignore error here
+            return result;
+        }
+
+        internal static ListObject GetListObject(Worksheet sheet, string rangeName)
+        {
+            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
+            ListObject result = null;
+            if (sheet != null && string.IsNullOrEmpty(rangeName) == false)
             {
-                return null;
+                try
+                {
+                    result = sheet.ListObjects[rangeName];
+                }
+                catch  //ignore error here
+                {
+                }
             }
+            return result;
         }
 
         internal static Range GetListObjectRange(ListObject listObject)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
-            try
+            Range result = null;
+            if (listObject != null)
             {
-                return listObject.Range;
+                try
+                {
+                    result = listObject.Range;
+                }
+                catch //ignore error here
+                {
+                }
             }
-            catch //ignore error here
-            {
-                return null;
-            }
+            return result;
         }
 
         internal static Range GetRange(Worksheet ws, string rangeName)
         {
             ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             Range result = null;
-            Workbook wk = ws.Parent;
-            Name namedName = GetName(wk, rangeName);
-            if (namedName != null)
+            if (ws != null && string.IsNullOrEmpty(rangeName) == false)
             {
-                result = GetNameRange(namedName);
-            }
-
-            if (result == null)
-            {
-                ListObject lo = GetListObject(ws, rangeName);
-                if (lo != null)
+                Workbook wk = ws.Parent;
+                Name namedName = GetName(wk, rangeName);
+                if (namedName != null)
                 {
-                    result = GetListObjectRange(lo);
+                    result = GetRangeOfName(namedName);
+                }
+
+                if (result == null)
+                {
+                    ListObject lo = GetListObject(ws, rangeName);
+                    if (lo != null)
+                    {
+                        result = GetListObjectRange(lo);
+                    }
+                }
+            }
+            return result;
+        }
+
+        internal static bool IsRangeOverlap(Range sourceRange, Range targetRange)
+        {
+            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
+            bool result = false;
+            if (sourceRange != null && targetRange != null)
+            {
+                Worksheet sourceSheet = sourceRange.Worksheet;
+                Worksheet targetSheet = targetRange.Worksheet;
+                Workbook sourceBook = sourceSheet.Parent;
+                Workbook targetBook = targetSheet.Parent;
+                if (string.Compare(sourceBook.Name, targetBook.Name, false) == 0)
+                {
+                    if (string.Compare(sourceSheet.Name, targetSheet.Name, false) == 0)
+                    {
+                        if (ExcelApp.Application.Intersect(sourceRange, targetRange) != null)
+                        {
+                            result = true;
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        internal static Name GetName(Range targetRange)
+        {
+            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
+            Name result = null;
+            if (targetRange != null)
+            {
+                Worksheet ws = targetRange.Worksheet;
+                Workbook wb = ws.Parent;
+                Names allNames = wb.Names;
+                Name item = null;
+                Range itemRange = null;
+                for (int i = 0; i < allNames.Count; i++)
+                {
+                    item = allNames.Item(i);
+                    itemRange = GetRangeOfName(item);
+                    if (IsRangeOverlap(itemRange, targetRange) == true)
+                    {
+                        result = item;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        internal static ListObject GetListObject(Range targetRange)
+        {
+            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
+            ListObject result = null;
+            if (targetRange != null)
+            {
+                Worksheet ws = targetRange.Worksheet;
+                ListObjects allListObject = ws.ListObjects;
+                ListObject item = null;
+                Range itemRange = null;
+                for (int i = 0; i < allListObject.Count; i++)
+                {
+                    item = allListObject[i];
+                    itemRange = GetListObjectRange(item);
+                    if (IsRangeOverlap(itemRange, targetRange) == true)
+                    {
+                        result = item;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        internal static string GetRangeName(Range targetRange)
+        {
+            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
+            string result = null;
+            if (targetRange != null)
+            {
+                Name namedRange = GetName(targetRange);
+                if (namedRange != null)
+                {
+                    result = namedRange.Name;
+                }
+
+                if (string.IsNullOrEmpty(result) == true)
+                {
+                    ListObject lo = GetListObject(targetRange);
+                    if (lo != null)
+                    {
+                        result = lo.Name;
+                    }
                 }
             }
             return result;
