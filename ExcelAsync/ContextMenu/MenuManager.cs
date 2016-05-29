@@ -13,15 +13,20 @@ namespace ExcelAsync.ContextMenu
 
         public static void AddContentMenu()
         {
-            CommandBar cellMenu = ExcelApp.Application.CommandBars["Cell"];
-            //There is a bug in below line. One dot is good, too dots are bad.
-            //CommandBarButton button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
-            //button.Caption = "Test Button";
-            //button.Tag = "Test Button";
-            //button.OnAction = "OnButtonClick";
-            button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
-            button.Caption = "Test Button";
-            button.Click += Button_Click;
+            Microsoft.Office.Interop.Excel.Range activeCell = ExcelApp.Application.ActiveCell;
+            string rangeName = ExcelOperator.RangeManager.GetRangeName(activeCell);
+            if (string.IsNullOrEmpty(rangeName) == false)
+            {
+                CommandBar cellMenu = ExcelApp.Application.CommandBars["Cell"];
+                //There is a bug in below line. One dot is good, too dots are bad.
+                //CommandBarButton button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
+                //button.Caption = "Test Button";
+                //button.Tag = "Test Button";
+                //button.OnAction = "OnButtonClick";
+                button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
+                button.Caption = "Test Button";
+                button.Click += Button_Click;
+            }
         }
 
         private static void Button_Click(CommandBarButton Ctrl, ref bool CancelDefault)

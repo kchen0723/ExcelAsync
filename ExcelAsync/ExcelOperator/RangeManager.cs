@@ -136,7 +136,7 @@ namespace ExcelAsync.ExcelOperator
                 Names allNames = wb.Names;
                 Name item = null;
                 Range itemRange = null;
-                for (int i = 0; i < allNames.Count; i++)
+                for (int i = 1; i <= allNames.Count; i++)      //VB start from 1
                 {
                     item = allNames.Item(i);
                     itemRange = GetRangeOfName(item);
@@ -160,7 +160,7 @@ namespace ExcelAsync.ExcelOperator
                 ListObjects allListObject = ws.ListObjects;
                 ListObject item = null;
                 Range itemRange = null;
-                for (int i = 0; i < allListObject.Count; i++)
+                for (int i = 1; i <= allListObject.Count; i++)     //VB start from 1
                 {
                     item = allListObject[i];
                     itemRange = GetListObjectRange(item);

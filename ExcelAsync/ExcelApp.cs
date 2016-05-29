@@ -21,6 +21,12 @@ namespace ExcelAsync
         {
             Application.WorkbookActivate += Application_WorkbookActivate;
             Application.WorkbookNewSheet += Application_WorkbookNewSheet;
+            Application.SheetBeforeRightClick += new AppEvents_SheetBeforeRightClickEventHandler(Application_SheetBeforeRightClick);
+        }
+
+        static void Application_SheetBeforeRightClick(object Sh, Range Target, ref bool Cancel)
+        {
+            ContextMenu.MenuManager.AddContentMenu();
         }
 
         static void Application_WorkbookNewSheet(Workbook Wb, object Sh)
