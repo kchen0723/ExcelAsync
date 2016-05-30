@@ -9,7 +9,7 @@ namespace ExcelWvvm.Entities
 {
     public class GoogleHistory : IGoogleHistory
     {
-        public event EventHandler OnRetrievedData;
+        public event Action<object, object> OnRetrievedData;
 
         public string SecurityId { get; set; }
         public DateTime StartDate { get; set; }
@@ -42,20 +42,17 @@ namespace ExcelWvvm.Entities
         {
             if (this.OnRetrievedData != null)
             {
-                this.OnRetrievedData(this, EventArgs.Empty);
+                if (e.Error == null && e.Cancelled == false)
+                {
+                    this.OnRetrievedData(this, e.Result);
+                }
             }
         }
 
         private void AsyncWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             object[,]  result = GoogleHistoryManager.GoogleHistory(this);
-            if (this.asyncWorker != null && this.asyncWorker.CancellationPending == false)
-            {
-                if (ExcelHandler.WriteToRangeHandler != null)
-                {
-                    ExcelHandler.WriteToRangeHandler(result);
-                }
-            }
+            e.Result = result;
         }
     }
 }

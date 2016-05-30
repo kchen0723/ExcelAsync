@@ -20,7 +20,9 @@ namespace ExcelWvvm
     public partial class WinGoogleHistory : Window
     {
         WinLoading loadingWindow = null;
+        WinDataResult resultWin = null;
         GoogleHistory history = null;
+        object[,] result = null;
         public WinGoogleHistory()
         {
             InitializeComponent();
@@ -46,9 +48,17 @@ namespace ExcelWvvm
             WpfWindowHelper.ShowWindow<WinLoading>(getLoadingInstance);
         }
 
-        private void History_OnRetrievedData(object sender, EventArgs e)
+        private void History_OnRetrievedData(object arg1, object arg2)
         {
             WpfWindowHelper.CloseWindow(this.loadingWindow);
+            result = arg2 as object[,];
+            WpfWindowHelper.ShowWindow<WinDataResult>(showDataResult);
+        }
+
+        private void showDataResult(object sender, EventArgs e)
+        {
+            this.resultWin = sender as WinDataResult;
+            this.resultWin.result = this.result;
         }
 
         private void getLoadingInstance(object sender, EventArgs e)
