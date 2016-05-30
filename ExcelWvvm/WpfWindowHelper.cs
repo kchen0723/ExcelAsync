@@ -40,5 +40,21 @@ namespace ExcelWvvm
             WindowInteropHelper interop = new WindowInteropHelper(win);
             //interop.Owner = ExcelDna.Integration.ExcelDnaUtil.WindowHandle;
         }
+
+        public static void CloseWindow(Window win)
+        {
+            if (win != null)
+            {
+                win.Dispatcher.Invoke(new Action<Window>(closeWindowByDispatcher), win);
+            }
+        }
+
+        private static void closeWindowByDispatcher(Window win)
+        {
+            if (win != null)
+            {
+                win.Close();
+            }
+        }
     }
 }

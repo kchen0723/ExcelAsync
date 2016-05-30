@@ -19,6 +19,7 @@ namespace ExcelWvvm
     /// </summary>
     public partial class WinGoogleHistory : Window
     {
+        WinLoading loadingWindow = null;
         object[,] result = null;
         public WinGoogleHistory()
         {
@@ -40,11 +41,18 @@ namespace ExcelWvvm
             history.EndDate = DateTime.Parse(this.tbEndDate.Text);
             this.Close();
 
+            WpfWindowHelper.ShowWindow<WinLoading>(getLoadingInstance);
             result = GoogleHistoryManager.GoogleHistory(history);
             if (ExcelHandler.WriteToRangeHandler != null)
             {
                 ExcelHandler.WriteToRangeHandler(result);
             }
+            WpfWindowHelper.CloseWindow(this.loadingWindow);
+        }
+
+        private void getLoadingInstance(object sender, EventArgs e)
+        {
+            this.loadingWindow = sender as WinLoading;
         }
     }
 }
