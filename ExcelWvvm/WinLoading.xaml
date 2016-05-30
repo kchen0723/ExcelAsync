@@ -8,6 +8,7 @@
         Title="WinLoading" Height="222.857" Width="293.143">
     <Grid>
         <Label x:Name="label" Content="Loading now" HorizontalAlignment="Left" Margin="90,54,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="button" Content="Cancel" HorizontalAlignment="Left" Margin="144,152,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
 
     </Grid>
 </Window>

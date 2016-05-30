@@ -18,9 +18,19 @@ namespace ExcelWvvm
     /// </summary>
     public partial class WinLoading : Window
     {
+        public event EventHandler OnCancel;
         public WinLoading()
         {
             InitializeComponent();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.OnCancel != null)
+            {
+                this.OnCancel(this, EventArgs.Empty);
+            }
+            this.Close();
         }
     }
 }
