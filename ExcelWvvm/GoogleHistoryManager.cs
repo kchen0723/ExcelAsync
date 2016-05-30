@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Net;
+using ExcelWvvm.Entities;
 
 namespace ExcelWvvm
 {
@@ -21,9 +22,9 @@ namespace ExcelWvvm
             {'a', "Adj Close"}
         };
 
-        public static object[,] GoogleHistory(string secId, DateTime dblStartDate, DateTime dblEndDate)
+        public static object[,] GoogleHistory(GoogleHistory history)
         {
-            return GoogleHistory(secId, dblStartDate.ToOADate(), dblEndDate.ToOADate(), "d", "dohlcv", false, false);
+            return GoogleHistory(history.SecurityId, history.StartDate.ToOADate(), history.EndDate.ToOADate(), "d", "dohlcv", false, false);
         }
 
         private static object[,] GoogleHistory(string secId, double dblStartDate, double dblEndDate, string period, string names, bool showHeaders, bool dateOrder)

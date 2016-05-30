@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ExcelWvvm.Entities;
 
 namespace ExcelWvvm
 {
@@ -33,7 +34,13 @@ namespace ExcelWvvm
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            result = GoogleHistoryManager.GoogleHistory(this.tbSecurityId.Text, DateTime.Parse(this.tbStartDate.Text), DateTime.Parse(this.tbEndDate.Text));
+            GoogleHistory history = new GoogleHistory();
+            history.SecurityId = this.tbSecurityId.Text;
+            history.StartDate = DateTime.Parse(this.tbStartDate.Text);
+            history.EndDate = DateTime.Parse(this.tbEndDate.Text);
+            this.Close();
+
+            result = GoogleHistoryManager.GoogleHistory(history);
             if (ExcelHandler.WriteToRangeHandler != null)
             {
                 ExcelHandler.WriteToRangeHandler(result);

@@ -52,8 +52,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\GoogleHistory.cs" />
     <Compile Include="ExcelHandler.cs" />
     <Compile Include="GoogleHistoryManager.cs" />
+    <Compile Include="Interfaces\IGoogleHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -70,6 +72,9 @@
     <Compile Include="WinGoogleHistory.xaml.cs">
       <DependentUpon>WinGoogleHistory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WinLoading.xaml.cs">
+      <DependentUpon>WinLoading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinRetrieveWeb.xaml.cs">
       <DependentUpon>WinRetrieveWeb.xaml</DependentUpon>
     </Compile>
@@ -85,6 +90,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="WinGoogleHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinLoading.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
