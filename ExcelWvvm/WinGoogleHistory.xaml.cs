@@ -20,7 +20,6 @@ namespace ExcelWvvm
     public partial class WinGoogleHistory : Window
     {
         WinLoading loadingWindow = null;
-        object[,] result = null;
         public WinGoogleHistory()
         {
             InitializeComponent();
@@ -39,14 +38,15 @@ namespace ExcelWvvm
             history.SecurityId = this.tbSecurityId.Text;
             history.StartDate = DateTime.Parse(this.tbStartDate.Text);
             history.EndDate = DateTime.Parse(this.tbEndDate.Text);
-            this.Close();
 
+            this.Visibility = Visibility.Hidden;
+            history.OnRetrievedData += History_OnRetrievedData;
+            history.ExecuteAsync();
             WpfWindowHelper.ShowWindow<WinLoading>(getLoadingInstance);
-            result = GoogleHistoryManager.GoogleHistory(history);
-            if (ExcelHandler.WriteToRangeHandler != null)
-            {
-                ExcelHandler.WriteToRangeHandler(result);
-            }
+        }
+
+        private void History_OnRetrievedData(object sender, EventArgs e)
+        {
             WpfWindowHelper.CloseWindow(this.loadingWindow);
         }
 
