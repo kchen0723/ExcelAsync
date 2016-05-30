@@ -24,6 +24,7 @@ namespace ExcelWvvm
 
         public static object[,] GoogleHistory(GoogleHistory history)
         {
+            System.Threading.Thread.Sleep(5000);  //to simulate slow call.
             return GoogleHistory(history.SecurityId, history.StartDate.ToOADate(), history.EndDate.ToOADate(), "d", "dohlcv", false, false);
         }
 
