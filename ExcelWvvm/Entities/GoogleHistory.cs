@@ -23,7 +23,6 @@ namespace ExcelWvvm.Entities
             this.asyncWorker.WorkerReportsProgress = true;
             this.asyncWorker.WorkerSupportsCancellation = true;
             this.asyncWorker.DoWork += AsyncWorker_DoWork;
-            this.asyncWorker.RunWorkerCompleted += AsyncWorker_RunWorkerCompleted;
             if (this.asyncWorker.IsBusy == false)
             {
                 this.asyncWorker.RunWorkerAsync();
@@ -38,21 +37,13 @@ namespace ExcelWvvm.Entities
             }
         }
 
-        private void AsyncWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (this.OnRetrievedData != null)
-            {
-                if (e.Error == null && e.Cancelled == false)
-                {
-                    this.OnRetrievedData(this, e.Result);
-                }
-            }
-        }
-
         private void AsyncWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             object[,]  result = GoogleHistoryManager.GoogleHistory(this);
-            e.Result = result;
+            if (this.OnRetrievedData != null && this.asyncWorker != null && this.asyncWorker.CancellationPending == false )
+            {
+                this.OnRetrievedData(this, result);
+            }
         }
     }
 }
