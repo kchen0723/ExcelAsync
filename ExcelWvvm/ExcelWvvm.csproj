@@ -69,6 +69,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="WindowHelper.cs" />
     <Compile Include="WinDataResult.xaml.cs">
       <DependentUpon>WinDataResult.xaml</DependentUpon>
     </Compile>

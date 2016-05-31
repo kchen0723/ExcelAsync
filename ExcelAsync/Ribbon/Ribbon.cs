@@ -49,12 +49,12 @@ namespace ExcelAsync.Ribbon
 
         public void FunctionsClick(IRibbonControl control)
         {
-            WpfWindowHelper.ShowWindow<ExcelWvvm.WinRetrieveWeb>(WinRetrieveWebCreatedHandler);
+            ExcelWvvm.WindowHelper.ShowWindow<ExcelWvvm.WinRetrieveWeb>(WinRetrieveWebCreatedHandler);
         }
 
         public void GoogleHistoryClick(IRibbonControl control)
         {
-            WpfWindowHelper.ShowWindow<ExcelWvvm.WinGoogleHistory>(null);
+            ExcelWvvm.WindowHelper.ShowWindow<ExcelWvvm.WinGoogleHistory>(null);
         }
 
         private void WinRetrieveWebCreatedHandler(object sender, EventArgs e)

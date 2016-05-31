@@ -61,9 +61,9 @@ namespace ExcelWvvm
 
         private void History_OnRetrievedData(object arg1, object arg2)
         {
-            WpfWindowHelper.CloseWindow(this.loadingWindow);
+            WindowHelper.CloseWindow(this.loadingWindow);
             result = arg2 as object[,];
-            WpfWindowHelper.ShowWindow<WinDataResult>(showDataResult);
+            WindowHelper.ShowWindow<WinDataResult>(showDataResult);
         }
 
         private void showDataResult(object sender, EventArgs e)
