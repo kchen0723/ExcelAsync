@@ -6,12 +6,33 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Threading;
+using ExcelWvvm;
 
 namespace ExcelAsync
 {
     public class WpfWindowHelper
     {
         private static Thread m_thread;
+
+        public static void ShowWindow(ExcelHandler.ShowWindowHandler createdHandler, params object[] args)
+        {
+            ThreadStart starter = delegate { dispatchWindow(createdHandler, args); };
+            m_thread = new Thread(starter);
+            m_thread.SetApartmentState(ApartmentState.STA);
+            m_thread.IsBackground = true;
+            m_thread.Start();
+        }
+
+        public static void dispatchWindow(ExcelHandler.ShowWindowHandler handler, params object[] args)
+        {
+            if (handler != null)
+            {
+                Window win = handler(args);
+                win.Show();
+                win.Closed += (sender, e) => win.Dispatcher.InvokeShutdown();
+                Dispatcher.Run();
+            }
+        }
 
         public static void ShowWindow<T>(EventHandler winCreatedHandler) where T : Window, new()
         {

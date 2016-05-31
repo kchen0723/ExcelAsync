@@ -39,6 +39,7 @@ namespace ExcelAsync
         private void InjectWvvwDelegate()
         {
             ExcelWvvm.ExcelHandler.WriteToRangeHandler = ExcelManager.EntityManager.WriteToRange;
+            ExcelWvvm.ExcelHandler.ShowWinHandler = WpfWindowHelper.ShowWindow;
         }
     }
 }

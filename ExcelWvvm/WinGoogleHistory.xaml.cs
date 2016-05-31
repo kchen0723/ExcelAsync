@@ -45,7 +45,18 @@ namespace ExcelWvvm
             this.Visibility = Visibility.Hidden;
             history.OnRetrievedData += History_OnRetrievedData;
             history.ExecuteAsync();
-            WpfWindowHelper.ShowWindow<WinLoading>(getLoadingInstance);
+            //WpfWindowHelper.ShowWindow<WinLoading>(getLoadingInstance);
+            if (ExcelHandler.ShowWinHandler != null)
+            {
+                ExcelHandler.ShowWinHandler(createLoadingInstance, null);
+            }
+        }
+
+        private Window createLoadingInstance(params object[] args)
+        {
+            this.loadingWindow = new WinLoading();
+            this.loadingWindow.OnCancel += LoadingWindow_OnCancel;
+            return this.loadingWindow;
         }
 
         private void History_OnRetrievedData(object arg1, object arg2)
