@@ -8,10 +8,6 @@ namespace ExcelWvvm
 {
     public class ExcelHandler
     {
-        public delegate Window ShowWindowHandler(params object[] args);
-
         public static Func<object[,], bool> WriteToRangeHandler { get; set; }
-
-        public static Action<ShowWindowHandler, object[]> ShowWinHandler { get; set; }
     }
 }

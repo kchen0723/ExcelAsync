@@ -62,7 +62,7 @@ namespace ExcelAsync.Ribbon
             ExcelWvvm.WinRetrieveWeb win = sender as ExcelWvvm.WinRetrieveWeb;
             if (win != null)
             {
-                WpfWindowHelper.SetOwnerToExcel(win);
+                ExcelWvvm.WindowHelper.SetOwnerToExcel(win, ExcelDnaUtil.WindowHandle);
                 win.Left = 300;
                 win.Top = 300;
             }
