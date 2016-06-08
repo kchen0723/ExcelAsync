@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace ExcelAsync.ExcelOperator
 {
@@ -9,7 +10,8 @@ namespace ExcelAsync.ExcelOperator
     {
         public static void CheckIsExcelUIMainThread()
         {
-            if (ExcelDna.Integration.ExcelDnaUtil.IsMainThread == false)
+            //In practice the managed Main thread id is 1.
+            if (Thread.CurrentThread.ManagedThreadId != 1)
             {
                 throw new Exception("All excel operation must be run at excel UI main thread");
             }
