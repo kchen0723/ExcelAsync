@@ -53,6 +53,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\GoogleHistories.cs" />
     <Compile Include="Entities\GoogleHistory.cs" />
     <Compile Include="ExcelHandler.cs" />
     <Compile Include="GoogleHistoryManager.cs" />

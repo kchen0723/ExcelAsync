@@ -41,6 +41,7 @@ namespace ExcelWvvm
             history.SecurityId = this.tbSecurityId.Text;
             history.StartDate = DateTime.Parse(this.tbStartDate.Text);
             history.EndDate = DateTime.Parse(this.tbEndDate.Text);
+            GoogleHistories.GetAllHistories().Add(history);
 
             this.Visibility = Visibility.Hidden;
             history.OnRetrievedData += History_OnRetrievedData;

@@ -10,5 +10,8 @@ namespace ExcelWvvm.Interfaces
         string SecurityId { get; set; }
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
+        string InstanceId { get; set; }
+        string RnageName { get; set; }
+        string SheetId { get; set; }
     }
 }
