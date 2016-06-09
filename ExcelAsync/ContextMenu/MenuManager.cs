@@ -116,7 +116,7 @@ namespace ExcelAsync.ContextMenu
             ExcelWvvm.Entities.GoogleHistory history = ExcelManager.EntityManager.GetHistoryByRange(activeCell);
             if (history != null)
             {
-                history.OnRetrievedData += History_OnRetrievedData;
+                history.OnRetrievedDataHandler = History_OnRetrievedData;
                 history.ExecuteAsync();
             }
         }

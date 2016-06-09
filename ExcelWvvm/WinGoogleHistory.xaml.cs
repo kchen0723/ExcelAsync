@@ -43,7 +43,7 @@ namespace ExcelWvvm
             history.EndDate = DateTime.Parse(this.tbEndDate.Text);
 
             this.Visibility = Visibility.Hidden;
-            history.OnRetrievedData += History_OnRetrievedData;
+            history.OnRetrievedDataHandler = History_OnRetrievedData;
             history.ExecuteAsync();
             WindowHelper.ShowWindow(createLoadingInstance, null);
         }
@@ -67,12 +67,6 @@ namespace ExcelWvvm
             this.resultWin = sender as WinDataResult;
             this.resultWin.result = this.result;
             this.resultWin.History = this.history;
-        }
-
-        private void getLoadingInstance(object sender, EventArgs e)
-        {
-            this.loadingWindow = sender as WinLoading;
-            this.loadingWindow.OnCancel += LoadingWindow_OnCancel;
         }
 
         private void LoadingWindow_OnCancel(object sender, EventArgs e)

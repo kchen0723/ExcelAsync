@@ -9,7 +9,7 @@ namespace ExcelWvvm.Entities
 {
     public class GoogleHistory : IGoogleHistory
     {
-        public event Action<object, object> OnRetrievedData;
+        public Action<object, object> OnRetrievedDataHandler { get; set; }
 
         public string SecurityId { get; set; }
         public DateTime StartDate { get; set; }
@@ -43,9 +43,9 @@ namespace ExcelWvvm.Entities
         private void AsyncWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             object[,]  result = GoogleHistoryManager.GoogleHistory(this);
-            if (this.OnRetrievedData != null && this.asyncWorker != null && this.asyncWorker.CancellationPending == false )
+            if (this.OnRetrievedDataHandler != null && this.asyncWorker != null && this.asyncWorker.CancellationPending == false )
             {
-                this.OnRetrievedData(this, result);
+                this.OnRetrievedDataHandler(this, result);
             }
         }
     }
