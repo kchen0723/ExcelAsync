@@ -16,15 +16,11 @@ namespace ExcelAsync.ContextMenu
         public static void SetContentMenu()
         {
             Microsoft.Office.Interop.Excel.Range activeCell = ExcelApp.Application.ActiveCell;
-            string rangeName = ExcelOperator.RangeManager.GetRangeName(activeCell);
             bool isThereHistory = false;
-            if (string.IsNullOrEmpty(rangeName) == false)
+            ExcelWvvm.Entities.GoogleHistory result = ExcelManager.EntityManager.GetHistoryByRange(activeCell);
+            if (result != null)
             {
-                ExcelWvvm.Entities.GoogleHistory result = ExcelWvvm.Entities.GoogleHistories.GetByRangeName(rangeName);
-                if (result != null)
-                {
-                    isThereHistory = true;
-                }
+                isThereHistory = true;
             }
             setContentMenuStatus(isThereHistory);
         }
@@ -116,7 +112,19 @@ namespace ExcelAsync.ContextMenu
 
         private static void Button_Click(CommandBarButton Ctrl, ref bool CancelDefault)
         {
-            System.Windows.MessageBox.Show("Hello from context menu");
+            Microsoft.Office.Interop.Excel.Range activeCell = ExcelApp.Application.ActiveCell;
+            ExcelWvvm.Entities.GoogleHistory history = ExcelManager.EntityManager.GetHistoryByRange(activeCell);
+            if (history != null)
+            {
+                history.OnRetrievedData += History_OnRetrievedData;
+                history.ExecuteAsync();
+            }
+        }
+
+        private static void History_OnRetrievedData(object arg1, object arg2)
+        {
+            object[,] result = arg2 as object[,];
+            ExcelManager.EntityManager.WriteToRange(result, arg1 as ExcelWvvm.Entities.GoogleHistory);
         }
 
         public static void OnButtonClick()

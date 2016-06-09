@@ -23,8 +23,19 @@ namespace ExcelAsync.ExcelManager
         private static void writeRangeToExcel()
         {
             Range result = ExcelOperator.ReadWriteRange.WriteToRange(m_result);
-            m_history.RnageName = "kissingerTest1";
+            m_history.RnageName = "kissingerTest1" + DateTime.Now.ToString("yyyyMMddHHmmss");
             result.Name = m_history.RnageName;
+        }
+
+        public static GoogleHistory GetHistoryByRange(Range targetRange)
+        {
+            GoogleHistory result = null;
+            string rangeName = ExcelOperator.RangeManager.GetRangeName(targetRange);
+            if (string.IsNullOrEmpty(rangeName) == false)
+            {
+                result = ExcelWvvm.Entities.GoogleHistories.GetByRangeName(rangeName);
+            }
+            return result;
         }
     }
 }
