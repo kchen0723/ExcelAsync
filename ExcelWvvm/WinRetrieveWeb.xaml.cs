@@ -65,7 +65,7 @@ namespace ExcelWvvm
                     //ExcelOperator.ReadWriteRange.WriteToRange(response);
                     if (ExcelHandler.WriteToRangeHandler != null)
                     {
-                        ExcelHandler.WriteToRangeHandler(response);
+                        //ExcelHandler.WriteToRangeHandler(response);
                     }
                 }
                 result.Remove("test1");

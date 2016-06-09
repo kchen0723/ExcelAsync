@@ -16,5 +16,10 @@ namespace ExcelWvvm.Entities
         {
             return m_AllHistories;
         }
+
+        public static GoogleHistory GetByRangeName(string rangeName)
+        {
+            return m_AllHistories.FirstOrDefault(item => string.Compare(item.RnageName, rangeName, true) == 0);
+        }
     }
 }

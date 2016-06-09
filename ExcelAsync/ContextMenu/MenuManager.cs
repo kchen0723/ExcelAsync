@@ -17,15 +17,19 @@ namespace ExcelAsync.ContextMenu
             string rangeName = ExcelOperator.RangeManager.GetRangeName(activeCell);
             if (string.IsNullOrEmpty(rangeName) == false)
             {
-                CommandBar cellMenu = ExcelApp.Application.CommandBars["Cell"];
-                //There is a bug in below line. One dot is good, too dots are bad.
-                //CommandBarButton button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
-                //button.Caption = "Test Button";
-                //button.Tag = "Test Button";
-                //button.OnAction = "OnButtonClick";
-                button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
-                button.Caption = "Test Button";
-                button.Click += Button_Click;
+                ExcelWvvm.Entities.GoogleHistory result = ExcelWvvm.Entities.GoogleHistories.GetByRangeName(rangeName);
+                if (result != null)
+                {
+                    CommandBar cellMenu = ExcelApp.Application.CommandBars["Cell"];
+                    //There is a bug in below line. One dot is good, too dots are bad.
+                    //CommandBarButton button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
+                    //button.Caption = "Test Button";
+                    //button.Tag = "Test Button";
+                    //button.OnAction = "OnButtonClick";
+                    button = cellMenu.Controls.Add(Type: MsoControlType.msoControlButton, Before: cellMenu.Controls.Count, Temporary: true) as CommandBarButton;
+                    button.Caption = "Test Button";
+                    button.Click += Button_Click;
+                }
             }
         }
 

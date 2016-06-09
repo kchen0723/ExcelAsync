@@ -19,6 +19,7 @@ namespace ExcelWvvm
     public partial class WinDataResult : Window
     {
         private object[,] m_result;
+        public Entities.GoogleHistory History { get; set; }
         public object[,] result
         {
             get
@@ -41,7 +42,8 @@ namespace ExcelWvvm
             this.Close();
             if (ExcelHandler.WriteToRangeHandler != null)
             {
-                ExcelHandler.WriteToRangeHandler(this.result);
+                this.History = ExcelHandler.WriteToRangeHandler(this.result, this.History);
+                Entities.GoogleHistories.GetAllHistories().Add(this.History);
             }
         }
     }

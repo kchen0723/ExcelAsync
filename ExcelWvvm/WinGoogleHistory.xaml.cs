@@ -41,7 +41,6 @@ namespace ExcelWvvm
             history.SecurityId = this.tbSecurityId.Text;
             history.StartDate = DateTime.Parse(this.tbStartDate.Text);
             history.EndDate = DateTime.Parse(this.tbEndDate.Text);
-            GoogleHistories.GetAllHistories().Add(history);
 
             this.Visibility = Visibility.Hidden;
             history.OnRetrievedData += History_OnRetrievedData;
@@ -67,6 +66,7 @@ namespace ExcelWvvm
         {
             this.resultWin = sender as WinDataResult;
             this.resultWin.result = this.result;
+            this.resultWin.History = this.history;
         }
 
         private void getLoadingInstance(object sender, EventArgs e)
