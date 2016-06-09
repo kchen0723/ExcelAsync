@@ -75,7 +75,7 @@ namespace ExcelAsync.Ribbon
 
         public void btnClockClick(IRibbonControl control)
         {
-            ContextMenu.MenuManager.AddContentMenu();
+            ContextMenu.MenuManager.AddContextMenus();
         }
 
         public void RibbonUI_OnLoad(IRibbonUI ribbonUI)

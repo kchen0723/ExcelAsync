@@ -26,7 +26,7 @@ namespace ExcelAsync
 
         static void Application_SheetBeforeRightClick(object Sh, Range Target, ref bool Cancel)
         {
-            ContextMenu.MenuManager.AddContentMenu();
+            ContextMenu.MenuManager.SetContentMenu();
         }
 
         static void Application_WorkbookNewSheet(Workbook Wb, object Sh)
