@@ -15,7 +15,7 @@ namespace ExcelWvvm.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string InstanceId { get; set; }
-        public string RnageName { get; set; }
+        public string RangeName { get; set; }
         public string SheetId { get; set; }
 
         private BackgroundWorker asyncWorker = null;

@@ -19,7 +19,7 @@ namespace ExcelWvvm.Entities
 
         public static GoogleHistory GetByRangeName(string rangeName)
         {
-            return m_AllHistories.FirstOrDefault(item => string.Compare(item.RnageName, rangeName, true) == 0);
+            return m_AllHistories.FirstOrDefault(item => string.Compare(item.RangeName, rangeName, true) == 0);
         }
     }
 }

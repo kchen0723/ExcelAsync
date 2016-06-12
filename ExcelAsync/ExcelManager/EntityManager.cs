@@ -23,8 +23,8 @@ namespace ExcelAsync.ExcelManager
         private static void writeRangeToExcel()
         {
             Range result = ExcelOperator.ReadWriteRange.WriteToRange(m_result);
-            m_history.RnageName = "kissingerTest1" + DateTime.Now.ToString("yyyyMMddHHmmss");
-            result.Name = m_history.RnageName;
+            m_history.RangeName = "kissingerTest1" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            result.Name = m_history.RangeName;
         }
 
         public static GoogleHistory GetHistoryByRange(Range targetRange)
