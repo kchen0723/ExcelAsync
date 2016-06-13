@@ -197,5 +197,33 @@ namespace ExcelAsync.ExcelOperator
             }
             return result;
         }
+
+        internal static void DeleteName(Worksheet ws, string rangeName)
+        {
+            Workbook wk = ws.Parent;
+            Name namedName = GetName(wk, rangeName);
+            if (namedName != null)
+            {
+                Range targetRange = GetRangeOfName(namedName);
+                if (targetRange != null)
+                {
+                    targetRange.Clear();
+                }
+                namedName.Delete();
+            }
+            else
+            {
+                ListObject lo = GetListObject(ws, rangeName);
+                if (lo != null)
+                {
+                    Range targetRange = GetListObjectRange(lo);
+                    if (targetRange != null)
+                    {
+                        targetRange.Clear();
+                    }
+                    lo.Unlist();
+                }
+            }
+        }
     }
 }
