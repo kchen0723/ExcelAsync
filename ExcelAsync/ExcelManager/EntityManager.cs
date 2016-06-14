@@ -12,6 +12,7 @@ namespace ExcelAsync.ExcelManager
     {
         static object[,] m_result = null;
         static GoogleHistory m_history = null;
+        static string m_comment = null;
         public static GoogleHistory WriteToRange(object[,] result, GoogleHistory history)
         {
             m_result = result;
@@ -47,6 +48,34 @@ namespace ExcelAsync.ExcelManager
                 result = ExcelWvvm.Entities.GoogleHistories.GetByRangeName(rangeName);
             }
             return result;
+        }
+
+        public static void ShowRefreshingComment(GoogleHistory history, string commnet = "Refreshing...")
+        {
+            m_history = history;
+            m_comment = commnet;
+            ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(showRefreshingComment);
+        }
+
+        private static void showRefreshingComment()
+        {
+            Worksheet ws = ExcelApp.Application.ActiveSheet;
+            Range targetRange = ExcelOperator.RangeManager.GetRange(ws, m_history.RangeName);
+            if (targetRange != null)
+            {
+                targetRange = targetRange.Cells[1, 1];
+                Comment refreshingComment = targetRange.Comment;
+                if (refreshingComment == null)
+                {
+                    refreshingComment = targetRange.AddComment();
+                }
+                refreshingComment.Shape.TextFrame.AutoSize = true;
+                refreshingComment.Shape.Fill.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+                //refreshingComment.Shape.Fill.ForeColor.RGB =RGB(220, 220, 220);
+                refreshingComment.Shape.Fill.OneColorGradient(Microsoft.Office.Core.MsoGradientStyle.msoGradientDiagonalUp, 1, (float)0.4);
+                refreshingComment.Visible = true;
+                refreshingComment.Text(m_comment);
+            }
         }
     }
 }
