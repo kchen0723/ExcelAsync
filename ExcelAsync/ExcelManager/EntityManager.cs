@@ -35,8 +35,15 @@ namespace ExcelAsync.ExcelManager
                 result = ExcelApp.Application.ActiveCell;
             }
             result = ExcelOperator.ReadWriteRange.WriteToRange(m_result, result);
+            setDateFormat(result, m_result.GetLength(1) + 1);
             m_history.RangeName = "kissingerTest1" + DateTime.Now.ToString("yyyyMMddHHmmss");
             result.Name = m_history.RangeName;
+        }
+
+        private static void setDateFormat(Range targetRange, int rows)
+        {
+            targetRange = targetRange.Resize[rows, 1];
+            targetRange.NumberFormat = "yyyy-MM-dd";
         }
 
         public static GoogleHistory GetHistoryByRange(Range targetRange)
