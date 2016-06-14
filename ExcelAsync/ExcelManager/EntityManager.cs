@@ -22,12 +22,18 @@ namespace ExcelAsync.ExcelManager
 
         private static void writeRangeToExcel()
         {
+            Range result = null;
             if (string.IsNullOrEmpty(m_history.RangeName) == false)
             {
                 Worksheet ws = ExcelApp.Application.ActiveSheet;
+                result = ExcelOperator.RangeManager.GetRange(ws, m_history.RangeName);
                 ExcelOperator.RangeManager.DeleteName(ws, m_history.RangeName);
             }
-            Range result = ExcelOperator.ReadWriteRange.WriteToRange(m_result);
+            if (result == null)
+            {
+                result = ExcelApp.Application.ActiveCell;
+            }
+            result = ExcelOperator.ReadWriteRange.WriteToRange(m_result, result);
             m_history.RangeName = "kissingerTest1" + DateTime.Now.ToString("yyyyMMddHHmmss");
             result.Name = m_history.RangeName;
         }

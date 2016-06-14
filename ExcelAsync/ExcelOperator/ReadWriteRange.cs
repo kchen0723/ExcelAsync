@@ -10,17 +10,13 @@ namespace ExcelAsync.ExcelOperator
 {
     internal class ReadWriteRange
     {
-        internal static Range WriteToRange(object[,] response)
+        internal static Range WriteToRange(object[,] response, Range targetRange)
         {
-            //ExcelReference sheet2 = XlCall.Excel(XlCall.xlSheetId, "Sheet2") as ExcelReference;
-            Microsoft.Office.Interop.Excel.Range activeCell = ExcelApp.Application.ActiveCell;
             int rowsCount = response.GetLength(0);
             int columnsCount = response.GetLength(1);
-            //ExcelReference target = new ExcelReference(0, rowsCount - 1, 0, columnsCount - 1, sheet2.SheetId);
-            string address = activeCell.Address;
-            ExcelReference target = new ExcelReference(activeCell.Row - 1, activeCell.Row + rowsCount - 2, activeCell.Column - 1, activeCell.Column + columnsCount - 2);
+            ExcelReference target = new ExcelReference(targetRange.Row - 1, targetRange.Row + rowsCount - 2, targetRange.Column - 1, targetRange.Column + columnsCount - 2);
             target.SetValue(response);
-            return activeCell.Resize[rowsCount, columnsCount];
+            return targetRange.Resize[rowsCount, columnsCount];
         }
 
         internal static object[,] ReadFromRange()
