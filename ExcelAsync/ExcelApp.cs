@@ -36,6 +36,7 @@ namespace ExcelAsync
 
         private static void Application_WorkbookActivate(Workbook Wb)
         {
+            ContextMenu.MenuManager.AddContextMenus();
             System.Windows.MessageBox.Show("Application_WorkbookActivate");
         }        
     }

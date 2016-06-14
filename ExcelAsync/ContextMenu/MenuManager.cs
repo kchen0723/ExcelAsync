@@ -66,7 +66,9 @@ namespace ExcelAsync.ContextMenu
 
                 button = rootControl.Controls.Add(Type: MsoControlType.msoControlButton) as CommandBarButton;
                 button.Caption = "Refresh";
-                button.Click += Button_Click;
+                button.Tag = "Refresh";
+                button.OnAction = "OnButtonClick";
+                //button.Click += Button_Click;
             }
         }
 
@@ -127,9 +129,12 @@ namespace ExcelAsync.ContextMenu
             ExcelManager.EntityManager.WriteToRange(result, arg1 as ExcelWvvm.Entities.GoogleHistory);
         }
 
+        [ExcelDna.Integration.ExcelFunction(IsHidden = true)]
         public static void OnButtonClick()
         {
             System.Windows.MessageBox.Show("Hello from context menu");
+            bool isCancel = false;
+            Button_Click(null, ref isCancel);
         }
     }
 }
