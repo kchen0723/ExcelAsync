@@ -20,13 +20,10 @@ namespace ExcelWvvm
     public partial class WinGoogleHistory : Window
     {
         WinLoading loadingWindow = null;
-        WinDataResult resultWin = null;
         GoogleHistory history = null;
         public WinGoogleHistory()
         {
             InitializeComponent();
-            this.Left = 200;
-            this.Top = 200;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -62,11 +59,11 @@ namespace ExcelWvvm
 
         private void showDataResult(Window win, params object[] args)
         {
-            this.resultWin = win as WinDataResult;
+            WinDataResult resultWin = win as WinDataResult;
             if (args != null && args.Length == 2)
             {
-                this.resultWin.result = args[0] as object[,];
-                this.resultWin.History = args[1] as GoogleHistory;
+                resultWin.result = args[0] as object[,];
+                resultWin.History = args[1] as GoogleHistory;
             }
         }
 
