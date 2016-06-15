@@ -22,7 +22,6 @@ namespace ExcelWvvm
         WinLoading loadingWindow = null;
         WinDataResult resultWin = null;
         GoogleHistory history = null;
-        object[,] result = null;
         public WinGoogleHistory()
         {
             InitializeComponent();
@@ -58,15 +57,17 @@ namespace ExcelWvvm
         private void History_OnRetrievedData(object arg1, object arg2)
         {
             WindowHelper.CloseWindow(this.loadingWindow);
-            result = arg2 as object[,];
-            WindowHelper.ShowWindow<WinDataResult>(showDataResult);
+            WindowHelper.ShowWindow<WinDataResult>(showDataResult, new object[] { arg2 as object[,], this.history });
         }
 
-        private void showDataResult(object sender, EventArgs e)
+        private void showDataResult(Window win, params object[] args)
         {
-            this.resultWin = sender as WinDataResult;
-            this.resultWin.result = this.result;
-            this.resultWin.History = this.history;
+            this.resultWin = win as WinDataResult;
+            if (args != null && args.Length == 2)
+            {
+                this.resultWin.result = args[0] as object[,];
+                this.resultWin.History = args[1] as GoogleHistory;
+            }
         }
 
         private void LoadingWindow_OnCancel(object sender, EventArgs e)

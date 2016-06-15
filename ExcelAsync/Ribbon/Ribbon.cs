@@ -57,9 +57,9 @@ namespace ExcelAsync.Ribbon
             ExcelWvvm.WindowHelper.ShowWindow<ExcelWvvm.WinGoogleHistory>(null);
         }
 
-        private void WinRetrieveWebCreatedHandler(object sender, EventArgs e)
+        private void WinRetrieveWebCreatedHandler(Window window, params object[] args)
         {
-            ExcelWvvm.WinRetrieveWeb win = sender as ExcelWvvm.WinRetrieveWeb;
+            ExcelWvvm.WinRetrieveWeb win = window as ExcelWvvm.WinRetrieveWeb;
             if (win != null)
             {
                 ExcelWvvm.WindowHelper.SetOwnerToExcel(win, ExcelDnaUtil.WindowHandle);

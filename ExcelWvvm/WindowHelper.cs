@@ -12,6 +12,7 @@ namespace ExcelWvvm
     public class WindowHelper
     {
         public delegate Window CreateWindowHandler(params object[] args);
+        public delegate void SetWindowHandler(Window win, params object[] args);
         public static void ShowWindow(CreateWindowHandler createHandler, params object[] args)
         {
             ThreadStart ts = delegate { dispatchWindow(createHandler, args); };
@@ -21,12 +22,13 @@ namespace ExcelWvvm
             thread.Start();
         }
 
-        public static void ShowWindow<T>(EventHandler createdHandler) where T : Window, new()
+        public static void ShowWindow<T>(SetWindowHandler setWindowHandler, params object[] args) where T : Window, new()
         {
-            Thread thread = new Thread(new ParameterizedThreadStart(dispatchWindow<T>));
+            ThreadStart ts = delegate { dispatchWindow<T>(setWindowHandler, args); };
+            Thread thread = new Thread(ts);
             thread.SetApartmentState(ApartmentState.STA);
             thread.IsBackground = true;
-            thread.Start(createdHandler);
+            thread.Start();
         }
 
         private static void dispatchWindow(CreateWindowHandler createHandler, params object[] args)
@@ -40,13 +42,12 @@ namespace ExcelWvvm
             }
         }
 
-        private static void dispatchWindow<T>(object createdHandler) where T : Window, new()
+        private static void dispatchWindow<T>(SetWindowHandler setWindowHandler, params object[] args) where T : Window, new()
         {
             T win = new T();
-            EventHandler handler = createdHandler as EventHandler;
-            if (handler != null)
+            if (setWindowHandler != null)
             {
-                handler(win, EventArgs.Empty);
+                setWindowHandler(win, args);
             }
             win.Show();
             win.Closed += (sender, e) => win.Dispatcher.InvokeShutdown();
