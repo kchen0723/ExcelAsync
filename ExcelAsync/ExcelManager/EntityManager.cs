@@ -10,34 +10,31 @@ namespace ExcelAsync.ExcelManager
 {
     public class EntityManager
     {
-        static object[,] m_result = null;
-        static GoogleHistory m_history = null;
-        static string m_comment = null;
         public static void WriteToRange(object[,] result, GoogleHistory history)
         {
-            m_result = result;
-            m_history = history;
-            ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(writeRangeToExcel);
+            Tuple<GoogleHistory, object[,]> parameters = new Tuple<GoogleHistory, object[,]>(history, result);
+            ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(writeRangeToExcel, parameters);
         }
 
-        private static void writeRangeToExcel()
+        private static void writeRangeToExcel(object parameters)
         {
+            Tuple<GoogleHistory, object[,]> para = parameters as Tuple<GoogleHistory, object[,]>;
             Range result = null;
-            if (string.IsNullOrEmpty(m_history.RangeName) == false)
+            if (string.IsNullOrEmpty(para.Item1.RangeName) == false)
             {
                 Worksheet ws = ExcelApp.Application.ActiveSheet;
-                result = ExcelOperator.RangeManager.GetRange(ws, m_history.RangeName);
-                ExcelOperator.RangeManager.DeleteName(ws, m_history.RangeName);
+                result = ExcelOperator.RangeManager.GetRange(ws, para.Item1.RangeName);
+                ExcelOperator.RangeManager.DeleteName(ws, para.Item1.RangeName);
             }
             if (result == null)
             {
                 result = ExcelApp.Application.ActiveCell;
             }
-            result = ExcelOperator.ReadWriteRange.WriteToRange(m_result, result);
-            setDateFormat(result, m_result.GetLength(1) + 1);
-            m_history.RangeName = "kissingerTest1" + DateTime.Now.ToString("yyyyMMddHHmmss");
-            result.Name = m_history.RangeName;
-            ExcelWvvm.Entities.GoogleHistories.GetAllHistories[m_history.InstanceId] = m_history;
+            result = ExcelOperator.ReadWriteRange.WriteToRange(para.Item2, result);
+            setDateFormat(result, para.Item2.GetLength(1) + 1);
+            para.Item1.RangeName = "kissingerTest1" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            result.Name = para.Item1.RangeName;
+            ExcelWvvm.Entities.GoogleHistories.GetAllHistories[para.Item1.InstanceId] = para.Item1;
         }
 
         private static void setDateFormat(Range targetRange, int rows)
@@ -59,15 +56,15 @@ namespace ExcelAsync.ExcelManager
 
         public static void ShowRefreshingComment(GoogleHistory history, string commnet = "Refreshing...")
         {
-            m_history = history;
-            m_comment = commnet;
-            ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(showRefreshingComment);
+            Tuple<GoogleHistory, string> parameters = new Tuple<GoogleHistory, string>(history, commnet);
+            ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(showRefreshingComment, parameters);
         }
 
-        private static void showRefreshingComment()
+        private static void showRefreshingComment(object parameters)
         {
+            Tuple<GoogleHistory, string> para = parameters as Tuple<GoogleHistory, string>;
             Worksheet ws = ExcelApp.Application.ActiveSheet;
-            Range targetRange = ExcelOperator.RangeManager.GetRange(ws, m_history.RangeName);
+            Range targetRange = ExcelOperator.RangeManager.GetRange(ws, para.Item1.RangeName);
             if (targetRange != null)
             {
                 targetRange = targetRange.Cells[1, 1];
@@ -81,7 +78,7 @@ namespace ExcelAsync.ExcelManager
                 //refreshingComment.Shape.Fill.ForeColor.RGB =RGB(220, 220, 220);
                 refreshingComment.Shape.Fill.OneColorGradient(Microsoft.Office.Core.MsoGradientStyle.msoGradientDiagonalUp, 1, (float)0.4);
                 refreshingComment.Visible = true;
-                refreshingComment.Text(m_comment);
+                refreshingComment.Text(para.Item2);
             }
         }
     }
