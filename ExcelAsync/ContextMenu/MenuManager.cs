@@ -124,10 +124,9 @@ namespace ExcelAsync.ContextMenu
             }
         }
 
-        private static void History_OnRetrievedData(object arg1, object arg2)
+        private static void History_OnRetrievedData(ExcelWvvm.Entities.GoogleHistory history, object[,] result)
         {
-            object[,] result = arg2 as object[,];
-            ExcelManager.EntityManager.WriteToRange(result, arg1 as ExcelWvvm.Entities.GoogleHistory);
+            ExcelManager.EntityManager.WriteToRange(result, history);
         }
 
         [ExcelDna.Integration.ExcelFunction(IsHidden = true)]

@@ -9,7 +9,7 @@ namespace ExcelWvvm.Entities
 {
     public class GoogleHistory : IGoogleHistory
     {
-        public Action<object, object> OnRetrievedDataHandler { get; set; }
+        public Action<GoogleHistory, object[,]> OnRetrievedDataHandler { get; set; }
         private string m_InstanceId;
 
         public string SecurityId { get; set; }

@@ -51,10 +51,10 @@ namespace ExcelWvvm
             return this.loadingWindow;
         }
 
-        private void History_OnRetrievedData(object arg1, object arg2)
+        private void History_OnRetrievedData(GoogleHistory gh, object[,] result)
         {
             WindowHelper.CloseWindow(this.loadingWindow);
-            WindowHelper.ShowWindow<WinDataResult>(showDataResult, new object[] { arg2 as object[,], this.history });
+            WindowHelper.ShowWindow<WinDataResult>(showDataResult, new object[] { result, gh });
         }
 
         private void showDataResult(Window win, params object[] args)
