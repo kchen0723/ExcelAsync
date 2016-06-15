@@ -43,7 +43,6 @@ namespace ExcelWvvm
             if (ExcelHandler.WriteToRangeHandler != null)
             {
                 this.History = ExcelHandler.WriteToRangeHandler(this.result, this.History);
-                Entities.GoogleHistories.GetAllHistories().Add(this.History);
             }
         }
     }

@@ -10,11 +10,29 @@ namespace ExcelWvvm.Entities
     public class GoogleHistory : IGoogleHistory
     {
         public Action<object, object> OnRetrievedDataHandler { get; set; }
+        private string m_InstanceId;
 
         public string SecurityId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string InstanceId { get; set; }
+        public string InstanceId
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.m_InstanceId) == true)
+                {
+                    this.m_InstanceId = Guid.NewGuid().ToString();
+                }
+                return this.m_InstanceId;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value) == false)
+                {
+                    this.m_InstanceId = value;
+                }
+            }
+        }
         public string RangeName { get; set; }
         public string SheetId { get; set; }
 

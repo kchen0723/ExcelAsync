@@ -38,6 +38,7 @@ namespace ExcelAsync.ExcelManager
             setDateFormat(result, m_result.GetLength(1) + 1);
             m_history.RangeName = "kissingerTest1" + DateTime.Now.ToString("yyyyMMddHHmmss");
             result.Name = m_history.RangeName;
+            ExcelWvvm.Entities.GoogleHistories.GetAllHistories[m_history.InstanceId] = m_history;
         }
 
         private static void setDateFormat(Range targetRange, int rows)
