@@ -42,7 +42,7 @@ namespace ExcelWvvm
             this.Close();
             if (ExcelHandler.WriteToRangeHandler != null)
             {
-                this.History = ExcelHandler.WriteToRangeHandler(this.result, this.History);
+                ExcelHandler.WriteToRangeHandler(this.result, this.History);
             }
         }
     }

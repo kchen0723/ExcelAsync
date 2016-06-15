@@ -13,12 +13,11 @@ namespace ExcelAsync.ExcelManager
         static object[,] m_result = null;
         static GoogleHistory m_history = null;
         static string m_comment = null;
-        public static GoogleHistory WriteToRange(object[,] result, GoogleHistory history)
+        public static void WriteToRange(object[,] result, GoogleHistory history)
         {
             m_result = result;
             m_history = history;
             ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(writeRangeToExcel);
-            return m_history;
         }
 
         private static void writeRangeToExcel()

@@ -9,6 +9,6 @@ namespace ExcelWvvm
 {
     public class ExcelHandler
     {
-        public static Func<object[,], GoogleHistory, GoogleHistory> WriteToRangeHandler { get; set; }
+        public static Action<object[,], GoogleHistory> WriteToRangeHandler { get; set; }
     }
 }
