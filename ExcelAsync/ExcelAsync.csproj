@@ -81,6 +81,11 @@
     <Compile Include="ExcelOperator\ReadWriteRange.cs" />
     <Compile Include="ExcelTaskUtil.cs" />
     <Compile Include="Formula\TestFormulas.cs" />
+    <Compile Include="MainThreadLogic\CustomPropertyManager.cs" />
+    <Compile Include="MainThreadLogic\ExcelUIThreadProtecter.cs" />
+    <Compile Include="MainThreadLogic\RangeManager.cs" />
+    <Compile Include="MainThreadLogic\ReadWriteRange.cs" />
+    <Compile Include="NonMainThreadLogic\EntityManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -126,6 +131,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="NonMainThreadLogic\readme.txt" />
+    <Resource Include="MainThreadLogic\readme.txt" />
     <Resource Include="Formula\Limitations of formulas.txt" />
     <Content Include="Images\clock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
