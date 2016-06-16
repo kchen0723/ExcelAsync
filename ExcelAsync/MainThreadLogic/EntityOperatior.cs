@@ -10,8 +10,9 @@ namespace ExcelAsync.MainThreadLogic
 {
     internal class EntityOperatior
     {
-        public static GoogleHistory GetHistoryByRange(Range targetRange)
+        internal static GoogleHistory GetHistoryByRange(Range targetRange)
         {
+            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             GoogleHistory result = null;
             string rangeName = MainThreadLogic.RangeManager.GetRangeName(targetRange);
             if (string.IsNullOrEmpty(rangeName) == false)
@@ -21,8 +22,9 @@ namespace ExcelAsync.MainThreadLogic
             return result;
         }
 
-        public static void ShowRefreshingComment(GoogleHistory history, string commnet = "Refreshing...")
+        internal static void ShowRefreshingComment(GoogleHistory history, string commnet = "Refreshing...")
         {
+            ExcelUIThreadProtecter.CheckIsExcelUIMainThread();
             Worksheet ws = ExcelApp.Application.ActiveSheet;
             Range targetRange = MainThreadLogic.RangeManager.GetRange(ws, history.RangeName);
             if (targetRange != null)
