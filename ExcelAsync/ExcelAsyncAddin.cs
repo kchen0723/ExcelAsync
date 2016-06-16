@@ -38,7 +38,7 @@ namespace ExcelAsync
 
         private void InjectWvvwDelegate()
         {
-            ExcelWvvm.ExcelHandler.WriteToRangeHandler = ExcelManager.EntityManager.WriteToRange;
+            ExcelWvvm.ExcelHandler.WriteToRangeHandler = NonMainThreadLogic.EntityManager.WriteToRange;
         }
     }
 }

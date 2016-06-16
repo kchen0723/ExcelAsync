@@ -17,7 +17,7 @@ namespace ExcelAsync.ContextMenu
         {
             Microsoft.Office.Interop.Excel.Range activeCell = ExcelApp.Application.ActiveCell;
             bool isThereHistory = false;
-            ExcelWvvm.Entities.GoogleHistory result = ExcelManager.EntityManager.GetHistoryByRange(activeCell);
+            ExcelWvvm.Entities.GoogleHistory result = NonMainThreadLogic.EntityManager.GetHistoryByRange(activeCell);
             if (result != null)
             {
                 isThereHistory = true;
@@ -115,10 +115,10 @@ namespace ExcelAsync.ContextMenu
         private static void Button_Click(CommandBarButton Ctrl, ref bool CancelDefault)
         {
             Microsoft.Office.Interop.Excel.Range activeCell = ExcelApp.Application.ActiveCell;
-            ExcelWvvm.Entities.GoogleHistory history = ExcelManager.EntityManager.GetHistoryByRange(activeCell);
+            ExcelWvvm.Entities.GoogleHistory history = NonMainThreadLogic.EntityManager.GetHistoryByRange(activeCell);
             if (history != null)
             {
-                ExcelManager.EntityManager.ShowRefreshingComment(history);
+                NonMainThreadLogic.EntityManager.ShowRefreshingComment(history);
                 history.OnRetrievedDataHandler = History_OnRetrievedData;
                 history.ExecuteAsync();
             }
@@ -126,7 +126,7 @@ namespace ExcelAsync.ContextMenu
 
         private static void History_OnRetrievedData(ExcelWvvm.Entities.GoogleHistory history, object[,] result)
         {
-            ExcelManager.EntityManager.WriteToRange(result, history);
+            NonMainThreadLogic.EntityManager.WriteToRange(result, history);
         }
 
         [ExcelDna.Integration.ExcelFunction(IsHidden = true)]

@@ -74,7 +74,6 @@
     <Compile Include="ContextMenu\MenuManager.cs" />
     <Compile Include="ExcelApp.cs" />
     <Compile Include="ExcelAsyncAddin.cs" />
-    <Compile Include="ExcelManager\EntityManager.cs" />
     <Compile Include="ExcelTaskUtil.cs" />
     <Compile Include="Formula\TestFormulas.cs" />
     <Compile Include="MainThreadLogic\CustomPropertyManager.cs" />
@@ -145,9 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ribbon\Ribbon.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ExcelManager\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
