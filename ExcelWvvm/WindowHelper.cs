@@ -16,15 +16,14 @@ namespace ExcelWvvm
         public static void ShowWindow(CreateWindowHandler createHandler, params object[] args)
         {
             ThreadStart ts = delegate { dispatchWindow(createHandler, args); };
-            Thread thread = new Thread(ts);
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.IsBackground = true;
-            thread.Start();
+            startThread(ts);
         }
 
         public static void ShowWindow<T>(SetWindowHandler setWindowHandler, params object[] args) where T : Window, new()
         {
             ThreadStart ts = delegate { dispatchWindow<T>(setWindowHandler, args); };
+            startThread(ts);
+        }
             Thread thread = new Thread(ts);
             thread.SetApartmentState(ApartmentState.STA);
             thread.IsBackground = true;
