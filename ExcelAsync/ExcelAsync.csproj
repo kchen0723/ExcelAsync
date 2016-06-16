@@ -77,6 +77,7 @@
     <Compile Include="ExcelTaskUtil.cs" />
     <Compile Include="Formula\TestFormulas.cs" />
     <Compile Include="MainThreadLogic\CustomPropertyManager.cs" />
+    <Compile Include="MainThreadLogic\EntityOperatior.cs" />
     <Compile Include="MainThreadLogic\ExcelUIThreadProtecter.cs" />
     <Compile Include="MainThreadLogic\RangeManager.cs" />
     <Compile Include="MainThreadLogic\ReadWriteRange.cs" />

@@ -42,44 +42,5 @@ namespace ExcelAsync.NonMainThreadLogic
             targetRange = targetRange.Resize[rows, 1];
             targetRange.NumberFormat = "yyyy-MM-dd";
         }
-
-        public static GoogleHistory GetHistoryByRange(Range targetRange)
-        {
-            GoogleHistory result = null;
-            string rangeName = MainThreadLogic.RangeManager.GetRangeName(targetRange);
-            if (string.IsNullOrEmpty(rangeName) == false)
-            {
-                result = ExcelWvvm.Entities.GoogleHistories.GetByRangeName(rangeName);
-            }
-            return result;
-        }
-
-        public static void ShowRefreshingComment(GoogleHistory history, string commnet = "Refreshing...")
-        {
-            Tuple<GoogleHistory, string> parameters = new Tuple<GoogleHistory, string>(history, commnet);
-            ExcelDna.Integration.ExcelAsyncUtil.QueueAsMacro(showRefreshingComment, parameters);
-        }
-
-        private static void showRefreshingComment(object parameters)
-        {
-            Tuple<GoogleHistory, string> para = parameters as Tuple<GoogleHistory, string>;
-            Worksheet ws = ExcelApp.Application.ActiveSheet;
-            Range targetRange = MainThreadLogic.RangeManager.GetRange(ws, para.Item1.RangeName);
-            if (targetRange != null)
-            {
-                targetRange = targetRange.Cells[1, 1];
-                Comment refreshingComment = targetRange.Comment;
-                if (refreshingComment == null)
-                {
-                    refreshingComment = targetRange.AddComment();
-                }
-                refreshingComment.Shape.TextFrame.AutoSize = true;
-                refreshingComment.Shape.Fill.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
-                //refreshingComment.Shape.Fill.ForeColor.RGB =RGB(220, 220, 220);
-                refreshingComment.Shape.Fill.OneColorGradient(Microsoft.Office.Core.MsoGradientStyle.msoGradientDiagonalUp, 1, (float)0.4);
-                refreshingComment.Visible = true;
-                refreshingComment.Text(para.Item2);
-            }
-        }
     }
 }
