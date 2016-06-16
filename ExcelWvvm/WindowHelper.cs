@@ -24,6 +24,9 @@ namespace ExcelWvvm
             ThreadStart ts = delegate { dispatchWindow<T>(setWindowHandler, args); };
             startThread(ts);
         }
+
+        private static void startThread(ThreadStart ts)
+        { 
             Thread thread = new Thread(ts);
             thread.SetApartmentState(ApartmentState.STA);
             thread.IsBackground = true;
