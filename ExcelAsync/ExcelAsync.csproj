@@ -75,10 +75,6 @@
     <Compile Include="ExcelApp.cs" />
     <Compile Include="ExcelAsyncAddin.cs" />
     <Compile Include="ExcelManager\EntityManager.cs" />
-    <Compile Include="ExcelOperator\CustomPropertyManager.cs" />
-    <Compile Include="ExcelOperator\ExcelUIThreadProtecter.cs" />
-    <Compile Include="ExcelOperator\RangeManager.cs" />
-    <Compile Include="ExcelOperator\ReadWriteRange.cs" />
     <Compile Include="ExcelTaskUtil.cs" />
     <Compile Include="Formula\TestFormulas.cs" />
     <Compile Include="MainThreadLogic\CustomPropertyManager.cs" />
@@ -149,9 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ribbon\Ribbon.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ExcelOperator\readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ExcelManager\readme.txt" />

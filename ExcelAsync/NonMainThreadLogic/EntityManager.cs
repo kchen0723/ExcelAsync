@@ -23,14 +23,14 @@ namespace ExcelAsync.NonMainThreadLogic
             if (string.IsNullOrEmpty(para.Item1.RangeName) == false)
             {
                 Worksheet ws = ExcelApp.Application.ActiveSheet;
-                result = ExcelOperator.RangeManager.GetRange(ws, para.Item1.RangeName);
-                ExcelOperator.RangeManager.DeleteName(ws, para.Item1.RangeName);
+                result = MainThreadLogic.RangeManager.GetRange(ws, para.Item1.RangeName);
+                MainThreadLogic.RangeManager.DeleteName(ws, para.Item1.RangeName);
             }
             if (result == null)
             {
                 result = ExcelApp.Application.ActiveCell;
             }
-            result = ExcelOperator.ReadWriteRange.WriteToRange(para.Item2, result);
+            result = MainThreadLogic.ReadWriteRange.WriteToRange(para.Item2, result);
             setDateFormat(result, para.Item2.GetLength(1) + 1);
             para.Item1.RangeName = "kissingerTest1" + DateTime.Now.ToString("yyyyMMddHHmmss");
             result.Name = para.Item1.RangeName;
@@ -46,7 +46,7 @@ namespace ExcelAsync.NonMainThreadLogic
         public static GoogleHistory GetHistoryByRange(Range targetRange)
         {
             GoogleHistory result = null;
-            string rangeName = ExcelOperator.RangeManager.GetRangeName(targetRange);
+            string rangeName = MainThreadLogic.RangeManager.GetRangeName(targetRange);
             if (string.IsNullOrEmpty(rangeName) == false)
             {
                 result = ExcelWvvm.Entities.GoogleHistories.GetByRangeName(rangeName);
@@ -64,7 +64,7 @@ namespace ExcelAsync.NonMainThreadLogic
         {
             Tuple<GoogleHistory, string> para = parameters as Tuple<GoogleHistory, string>;
             Worksheet ws = ExcelApp.Application.ActiveSheet;
-            Range targetRange = ExcelOperator.RangeManager.GetRange(ws, para.Item1.RangeName);
+            Range targetRange = MainThreadLogic.RangeManager.GetRange(ws, para.Item1.RangeName);
             if (targetRange != null)
             {
                 targetRange = targetRange.Cells[1, 1];
