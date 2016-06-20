@@ -32,12 +32,16 @@ namespace ExcelAsync
         static void Application_WorkbookNewSheet(Workbook Wb, object Sh)
         {
             System.Windows.MessageBox.Show("Application_WorkbookNewSheet");
+            //https://blogs.msdn.microsoft.com/vsofficedeveloper/2008/04/11/excel-ole-embedding-errors-if-you-have-managed-add-in-sinking-application-events-in-excel-2/
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(Wb);
         }
 
         private static void Application_WorkbookActivate(Workbook Wb)
         {
             ContextMenu.MenuManager.AddContextMenus();
             System.Windows.MessageBox.Show("Application_WorkbookActivate");
+            //https://blogs.msdn.microsoft.com/vsofficedeveloper/2008/04/11/excel-ole-embedding-errors-if-you-have-managed-add-in-sinking-application-events-in-excel-2/
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(Wb);
         }        
     }
 }
