@@ -75,8 +75,15 @@ namespace ExcelAsync.Ribbon
 
         public void btnClockClick(IRibbonControl control)
         {
-            //ContextMenu.MenuManager.AddContextMenus();
-            MessageBox.Show(control.Id);
+            ExcelWvvm.WindowHelper.ShowWindow(createMvvmGoogleHistory, null);
+        }
+
+        private Window createMvvmGoogleHistory(params object[] args)
+        {
+            ExcelWvvm.View.WinGoogleHistory history = new ExcelWvvm.View.WinGoogleHistory();
+            ExcelWvvm.ViewModel.GoogleHistoryViewModel gvm = new ExcelWvvm.ViewModel.GoogleHistoryViewModel();
+            history.DataContext = gvm;
+            return history;
         }
 
         public void RibbonUI_OnLoad(IRibbonUI ribbonUI)

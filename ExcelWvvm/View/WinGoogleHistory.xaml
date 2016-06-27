@@ -12,11 +12,11 @@
             <ColumnDefinition Width="39*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lblSecurityId" Content="Security Id" HorizontalAlignment="Left" Margin="43,37,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSecurityId" HorizontalAlignment="Left" Height="23" Margin="136,40,0,0" TextWrapping="Wrap" Text="GOOG" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbSecurityId" HorizontalAlignment="Left" Height="23" Margin="136,40,0,0" TextWrapping="Wrap" Text="{Binding SecurityId}" VerticalAlignment="Top" Width="123"/>
         <Label x:Name="lblStartDate" Content="Start Date" HorizontalAlignment="Left" Margin="43,81,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbStartDate" HorizontalAlignment="Left" Height="23" Margin="136,84,0,0" TextWrapping="Wrap" Text="05/15/2016" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbStartDate" HorizontalAlignment="Left" Height="23" Margin="136,84,0,0" TextWrapping="Wrap" Text="{Binding StartDate}" VerticalAlignment="Top" Width="123"/>
         <Label x:Name="lblEndDate" Content="End Date" HorizontalAlignment="Left" Margin="43,130,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbEndDate" HorizontalAlignment="Left" Height="23" Margin="136,133,0,0" TextWrapping="Wrap" Text="05/24/2016" VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="tbEndDate" HorizontalAlignment="Left" Height="23" Margin="136,133,0,0" TextWrapping="Wrap" Text="{Binding EndDate}" VerticalAlignment="Top" Width="123"/>
         <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="90,206,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="184,206,0,0" VerticalAlignment="Top" Width="75"/>
 

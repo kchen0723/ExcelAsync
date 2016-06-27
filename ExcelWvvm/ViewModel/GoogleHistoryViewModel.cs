@@ -11,5 +11,11 @@ namespace ExcelWvvm.ViewModel
         public string SecurityId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public GoogleHistoryViewModel()
+        {
+            this.SecurityId = "aaaa";
+            this.StartDate = DateTime.Now;
+            this.EndDate = this.StartDate;
+        }
     }
 }
