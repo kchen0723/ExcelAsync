@@ -1,6 +1,7 @@
 **/debug
 **/Debug64
 **/ipch
+**/packages
 
 *.sdf
 *.opensdf
