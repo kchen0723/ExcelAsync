@@ -74,6 +74,7 @@
     <Compile Include="ExcelHandler.cs" />
     <Compile Include="GoogleHistoryManager.cs" />
     <Compile Include="Interfaces\IGoogleHistory.cs" />
+    <Compile Include="Model\GoogleHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +89,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SerializerHelper.cs" />
+    <Compile Include="ViewModel\GoogleHistoryViewModel.cs" />
+    <Compile Include="View\WinGoogleHistory.xaml.cs">
+      <DependentUpon>WinGoogleHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowHelper.cs" />
     <Compile Include="WinDataResult.xaml.cs">
       <DependentUpon>WinDataResult.xaml</DependentUpon>
@@ -113,6 +118,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\WinGoogleHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WinDataResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +139,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
