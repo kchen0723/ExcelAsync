@@ -13,9 +13,9 @@ namespace ExcelWvvm.ViewModel
         public DateTime EndDate { get; set; }
         public GoogleHistoryViewModel()
         {
-            this.SecurityId = "aaaa";
+            this.SecurityId = "";
             this.StartDate = DateTime.Now;
-            this.EndDate = this.StartDate;
+            this.EndDate = this.StartDate.AddDays(7);
         }
     }
 }
