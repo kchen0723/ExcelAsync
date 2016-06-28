@@ -80,9 +80,8 @@ namespace ExcelAsync.Ribbon
 
         private Window createMvvmGoogleHistory(params object[] args)
         {
-            ExcelWvvm.View.WinGoogleHistory history = new ExcelWvvm.View.WinGoogleHistory();
             ExcelWvvm.ViewModel.GoogleHistoryViewModel gvm = new ExcelWvvm.ViewModel.GoogleHistoryViewModel();
-            history.DataContext = gvm;
+            ExcelWvvm.View.WinGoogleHistory history = new ExcelWvvm.View.WinGoogleHistory(gvm);
             return history;
         }
 

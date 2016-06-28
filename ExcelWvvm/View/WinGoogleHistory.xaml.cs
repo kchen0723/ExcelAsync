@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ExcelWvvm.ViewModel;
 
 namespace ExcelWvvm.View
 {
@@ -18,9 +19,10 @@ namespace ExcelWvvm.View
     /// </summary>
     public partial class WinGoogleHistory : Window
     {
-        public WinGoogleHistory()
+        public WinGoogleHistory(GoogleHistoryViewModel vm)
         {
             InitializeComponent();
+            this.DataContext = vm;
         }
     }
 }
