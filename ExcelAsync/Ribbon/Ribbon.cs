@@ -82,6 +82,8 @@ namespace ExcelAsync.Ribbon
         {
             ExcelWvvm.ViewModel.GoogleHistoryViewModel gvm = new ExcelWvvm.ViewModel.GoogleHistoryViewModel();
             ExcelWvvm.View.WinGoogleHistory history = new ExcelWvvm.View.WinGoogleHistory(gvm);
+            //ExcelWvvm.ViewModel.WinGoogleHistoryContainerViewModel containerVM = new ExcelWvvm.ViewModel.WinGoogleHistoryContainerViewModel(gvm);
+            //ExcelWvvm.View.WinGoogleHistoryContainer history = new ExcelWvvm.View.WinGoogleHistoryContainer(containerVM);
             return history;
         }
 

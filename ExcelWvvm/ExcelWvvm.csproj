@@ -90,8 +90,18 @@
     </Compile>
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ViewModel\GoogleHistoryViewModel.cs" />
+    <Compile Include="ViewModel\WinGoogleHistoryContainerViewModel.cs" />
+    <Compile Include="View\UcGoogleHistory.xaml.cs">
+      <DependentUpon>UcGoogleHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UcLoading.xaml.cs">
+      <DependentUpon>UcLoading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WinGoogleHistory.xaml.cs">
       <DependentUpon>WinGoogleHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WinGoogleHistoryContainer.xaml.cs">
+      <DependentUpon>WinGoogleHistoryContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowHelper.cs" />
     <Compile Include="WinDataResult.xaml.cs">
@@ -118,7 +128,19 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\UcGoogleHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcLoading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WinGoogleHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WinGoogleHistoryContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
