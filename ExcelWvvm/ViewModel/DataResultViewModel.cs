@@ -13,6 +13,14 @@ namespace ExcelWvvm.ViewModel
 
         public object[,] Result { get; set; }
 
+        public string ResultCount
+        {
+            get
+            {
+                return string.Format("{0} Rows {1} columns", this.RowCount, this.ColumnCount);
+            }
+        }
+
         public int RowCount
         {
             get
