@@ -69,6 +69,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Entities\GoogleHistories.cs" />
     <Compile Include="Entities\GoogleHistory.cs" />
     <Compile Include="ExcelHandler.cs" />

@@ -10,23 +10,41 @@ namespace ExcelWvvm.ViewModel
 {
     public class WinGoogleHistoryContainerViewModel : ViewModelBase
     {
-        public GoogleHistoryViewModel GoogleHistoryVM { get; set; }
-
         public object CurrentViewModel { get; set; }
 
-        public RelayCommand<Window> CloseCommand { get; set; }
+        public bool IsOkButtonVisibal { get; set; }
+        public bool IsCancelButonVisibal { get; set; }
+
+        public RelayCommand<Window> CancelCommand { get; set; }
+
+        public RelayCommand OkCommand { get; set; }
 
         public WinGoogleHistoryContainerViewModel()
         {
-            this.CloseCommand = new RelayCommand<Window>(CloseWindow);
+            this.CancelCommand = new RelayCommand<Window>(OnCancel);
+            this.OkCommand = new RelayCommand(OnOk);
             this.CurrentViewModel = new GoogleHistoryViewModel();
+            this.IsOkButtonVisibal = true;
+            this.IsCancelButonVisibal = true;
         }
 
-        public void CloseWindow(Window win)
+        public void OnCancel(Window win)
         {
             if (win != null)
             {
                 WindowHelper.CloseWindow(win);
+            }
+        }
+
+        public void OnOk()
+        {
+            if (this.CurrentViewModel is GoogleHistoryViewModel)
+            {
+                GoogleHistoryViewModel gh = this.CurrentViewModel as GoogleHistoryViewModel;
+                this.CurrentViewModel = new LoadingViewModel();
+                this.IsOkButtonVisibal = false;
+                this.RaisePropertyChanged("CurrentViewModel");
+                this.RaisePropertyChanged("IsOkButtonVisibal");
             }
         }
     }

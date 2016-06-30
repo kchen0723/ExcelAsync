@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:View="clr-namespace:ExcelWvvm.View"
+        xmlns:converter="clr-namespace:ExcelWvvm.Converter"
         xmlns:ViewModel="clr-namespace:ExcelWvvm.ViewModel"
         mc:Ignorable="d"
         Title="WinGoogleHistoryContainer" Height="435.447" Width="533.956">
@@ -14,12 +15,14 @@
         <DataTemplate DataType="{x:Type ViewModel:LoadingViewModel}">
             <View:UcLoading></View:UcLoading>
         </DataTemplate>
+
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Window.Resources>
     <Grid>
         <StackPanel>
             <ContentPresenter Content="{Binding CurrentViewModel}"></ContentPresenter>
         </StackPanel>
-        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="168,331,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="262,331,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=GHContainerWin}" />
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="168,331,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OkCommand}" Visibility="{Binding IsOkButtonVisibal, Converter={StaticResource BoolToVisibilityConverter} }" />
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="262,331,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=GHContainerWin}" />
     </Grid>
 </Window>
