@@ -17,12 +17,12 @@ namespace ExcelWvvm.ViewModel
         public bool IsCancelButonVisible { get; set; }
 
         public RelayCommand<Window> CancelCommand { get; set; }
-        public RelayCommand OkCommand { get; set; }
+        public RelayCommand<Window> OkCommand { get; set; }
 
         public WinGoogleHistoryContainerViewModel()
         {
             this.CancelCommand = new RelayCommand<Window>(OnCancel);
-            this.OkCommand = new RelayCommand(OnOk);
+            this.OkCommand = new RelayCommand<Window>(OnOk);
             this.CurrentViewModel = new GoogleHistoryViewModel();
             this.IsOkButtonVisible = true;
             this.IsCancelButonVisible = true;
@@ -36,7 +36,7 @@ namespace ExcelWvvm.ViewModel
             }
         }
 
-        public void OnOk()
+        public void OnOk(Window win)
         {
             if (this.CurrentViewModel is GoogleHistoryViewModel)
             {
@@ -57,7 +57,12 @@ namespace ExcelWvvm.ViewModel
             }
             else if (this.CurrentViewModel is DataResultViewModel)
             {
-
+                this.OnCancel(win);
+                DataResultViewModel dvm = this.CurrentViewModel as DataResultViewModel;
+                if (ExcelHandler.WriteToRangeHandler != null)
+                {
+                    ExcelHandler.WriteToRangeHandler(dvm.Result, dvm.GH);
+                }
             }
         }
 
