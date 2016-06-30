@@ -15,6 +15,9 @@
         <DataTemplate DataType="{x:Type ViewModel:LoadingViewModel}">
             <View:UcLoading></View:UcLoading>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModel:DataResultViewModel}">
+            <View:UcDataResult></View:UcDataResult>
+        </DataTemplate>
 
         <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Window.Resources>

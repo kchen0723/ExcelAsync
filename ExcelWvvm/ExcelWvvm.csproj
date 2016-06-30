@@ -90,9 +90,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SerializerHelper.cs" />
+    <Compile Include="ViewModel\DataResultViewModel.cs" />
     <Compile Include="ViewModel\GoogleHistoryViewModel.cs" />
     <Compile Include="ViewModel\LoadingViewModel.cs" />
     <Compile Include="ViewModel\WinGoogleHistoryContainerViewModel.cs" />
+    <Compile Include="View\UcDataResult.xaml.cs">
+      <DependentUpon>UcDataResult.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UcGoogleHistory.xaml.cs">
       <DependentUpon>UcGoogleHistory.xaml</DependentUpon>
     </Compile>
@@ -130,6 +134,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\UcDataResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UcGoogleHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

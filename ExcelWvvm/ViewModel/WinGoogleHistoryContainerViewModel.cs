@@ -42,9 +42,14 @@ namespace ExcelWvvm.ViewModel
             {
                 GoogleHistoryViewModel gh = this.CurrentViewModel as GoogleHistoryViewModel;
                 this.CurrentViewModel = new LoadingViewModel();
-                this.IsOkButtonVisibal = false;
+                //this.IsOkButtonVisibal = false;
                 this.RaisePropertyChanged("CurrentViewModel");
                 this.RaisePropertyChanged("IsOkButtonVisibal");
+            }
+            else if (this.CurrentViewModel is LoadingViewModel)
+            {
+                this.CurrentViewModel = new DataResultViewModel();
+                this.RaisePropertyChanged("CurrentViewModel");
             }
         }
     }
