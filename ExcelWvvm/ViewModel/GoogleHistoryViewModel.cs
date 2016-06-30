@@ -16,7 +16,7 @@ namespace ExcelWvvm.ViewModel
 
         public GoogleHistoryViewModel()
         {
-            this.SecurityId = "";
+            this.SecurityId = "GOOG";
             this.StartDate = DateTime.Now;
             this.EndDate = this.StartDate.AddDays(7);
         }

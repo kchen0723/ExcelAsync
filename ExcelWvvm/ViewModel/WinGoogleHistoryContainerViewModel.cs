@@ -5,18 +5,18 @@ using System.Text;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using ExcelWvvm.Entities;
 
 namespace ExcelWvvm.ViewModel
 {
     public class WinGoogleHistoryContainerViewModel : ViewModelBase
     {
+        private GoogleHistory m_history;
         public object CurrentViewModel { get; set; }
-
-        public bool IsOkButtonVisibal { get; set; }
-        public bool IsCancelButonVisibal { get; set; }
+        public bool IsOkButtonVisible { get; set; }
+        public bool IsCancelButonVisible { get; set; }
 
         public RelayCommand<Window> CancelCommand { get; set; }
-
         public RelayCommand OkCommand { get; set; }
 
         public WinGoogleHistoryContainerViewModel()
@@ -24,8 +24,8 @@ namespace ExcelWvvm.ViewModel
             this.CancelCommand = new RelayCommand<Window>(OnCancel);
             this.OkCommand = new RelayCommand(OnOk);
             this.CurrentViewModel = new GoogleHistoryViewModel();
-            this.IsOkButtonVisibal = true;
-            this.IsCancelButonVisibal = true;
+            this.IsOkButtonVisible = true;
+            this.IsCancelButonVisible = true;
         }
 
         public void OnCancel(Window win)
@@ -41,16 +41,37 @@ namespace ExcelWvvm.ViewModel
             if (this.CurrentViewModel is GoogleHistoryViewModel)
             {
                 GoogleHistoryViewModel gh = this.CurrentViewModel as GoogleHistoryViewModel;
+                this.m_history = new GoogleHistory();
+                this.m_history.SecurityId = gh.SecurityId;
+                this.m_history.StartDate = gh.StartDate;
+                this.m_history.EndDate = gh.EndDate;
+                this.m_history.OnRetrievedDataHandler = History_OnRetrievedData;
+                this.m_history.ExecuteAsync();
                 this.CurrentViewModel = new LoadingViewModel();
-                //this.IsOkButtonVisibal = false;
+                this.IsOkButtonVisible = false;
                 this.RaisePropertyChanged("CurrentViewModel");
-                this.RaisePropertyChanged("IsOkButtonVisibal");
+                this.RaisePropertyChanged("IsOkButtonVisible");
             }
             else if (this.CurrentViewModel is LoadingViewModel)
             {
-                this.CurrentViewModel = new DataResultViewModel();
-                this.RaisePropertyChanged("CurrentViewModel");
             }
+            else if (this.CurrentViewModel is DataResultViewModel)
+            {
+
+            }
+        }
+
+        private void History_OnRetrievedData(GoogleHistory gh, object[,] result)
+        {
+            DataResultViewModel dvm = new DataResultViewModel();
+            dvm.GH = gh;
+            dvm.Result = result;
+            this.CurrentViewModel = dvm;
+            this.IsOkButtonVisible = true;
+            this.IsCancelButonVisible = false;
+            this.RaisePropertyChanged("CurrentViewModel");
+            this.RaisePropertyChanged("IsOkButtonVisible");
+            this.RaisePropertyChanged("IsCancelButonVisible");
         }
     }
 }

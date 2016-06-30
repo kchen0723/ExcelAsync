@@ -25,7 +25,10 @@
         <StackPanel>
             <ContentPresenter Content="{Binding CurrentViewModel}"></ContentPresenter>
         </StackPanel>
-        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="168,331,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OkCommand}" Visibility="{Binding IsOkButtonVisibal, Converter={StaticResource BoolToVisibilityConverter} }" />
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="262,331,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=GHContainerWin}" />
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="168,331,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OkCommand}" 
+                Visibility="{Binding IsOkButtonVisible, Converter={StaticResource BoolToVisibilityConverter} }" />
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="262,331,0,0" VerticalAlignment="Top" Width="75" 
+                Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=GHContainerWin}" 
+                Visibility="{Binding IsCancelButonVisible, Converter={StaticResource BoolToVisibilityConverter}}" />
     </Grid>
 </Window>
