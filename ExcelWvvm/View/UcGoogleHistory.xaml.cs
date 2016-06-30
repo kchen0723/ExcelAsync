@@ -20,10 +20,9 @@ namespace ExcelWvvm.View
     /// </summary>
     public partial class UcGoogleHistory : UserControl
     {
-        public UcGoogleHistory(GoogleHistoryViewModel vm)
+        public UcGoogleHistory()
         {
             InitializeComponent();
-            this.DataContext = vm;
         }
     }
 }

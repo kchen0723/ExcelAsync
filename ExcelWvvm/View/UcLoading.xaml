@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Label x:Name="label" Content="Loading now" HorizontalAlignment="Left" Margin="90,54,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="button" Content="Cancel" HorizontalAlignment="Left" Margin="144,152,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label" Content="Loading now" HorizontalAlignment="Left" Margin="102,117,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </UserControl>

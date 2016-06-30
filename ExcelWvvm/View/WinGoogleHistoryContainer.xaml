@@ -1,14 +1,25 @@
-﻿<Window x:Class="ExcelWvvm.View.WinGoogleHistoryContainer"
+﻿<Window x:Name="GHContainerWin" x:Class="ExcelWvvm.View.WinGoogleHistoryContainer"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ExcelWvvm.View"
+        xmlns:View="clr-namespace:ExcelWvvm.View"
+        xmlns:ViewModel="clr-namespace:ExcelWvvm.ViewModel"
         mc:Ignorable="d"
-        Title="WinGoogleHistoryContainer" Height="300" Width="300">
+        Title="WinGoogleHistoryContainer" Height="435.447" Width="533.956">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type ViewModel:GoogleHistoryViewModel}">
+            <View:UcGoogleHistory></View:UcGoogleHistory>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModel:LoadingViewModel}">
+            <View:UcLoading></View:UcLoading>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <StackPanel>
             <ContentPresenter Content="{Binding CurrentViewModel}"></ContentPresenter>
         </StackPanel>
+        <Button x:Name="btnOK" Content="OK" HorizontalAlignment="Left" Margin="168,331,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="262,331,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=GHContainerWin}" />
     </Grid>
 </Window>

@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="SerializerHelper.cs" />
     <Compile Include="ViewModel\GoogleHistoryViewModel.cs" />
+    <Compile Include="ViewModel\LoadingViewModel.cs" />
     <Compile Include="ViewModel\WinGoogleHistoryContainerViewModel.cs" />
     <Compile Include="View\UcGoogleHistory.xaml.cs">
       <DependentUpon>UcGoogleHistory.xaml</DependentUpon>
