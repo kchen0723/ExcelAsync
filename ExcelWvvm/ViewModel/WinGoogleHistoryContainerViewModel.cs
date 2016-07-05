@@ -49,8 +49,7 @@ namespace ExcelWvvm.ViewModel
                 this.m_history.ExecuteAsync();
                 this.CurrentViewModel = new LoadingViewModel();
                 this.IsOkButtonVisible = false;
-                this.RaisePropertyChanged("CurrentViewModel");
-                this.RaisePropertyChanged("IsOkButtonVisible");
+                this.RaisePropertyChanged(null);
             }
             else if (this.CurrentViewModel is LoadingViewModel)
             {
@@ -74,9 +73,7 @@ namespace ExcelWvvm.ViewModel
             this.CurrentViewModel = dvm;
             this.IsOkButtonVisible = true;
             this.IsCancelButonVisible = false;
-            this.RaisePropertyChanged("CurrentViewModel");
-            this.RaisePropertyChanged("IsOkButtonVisible");
-            this.RaisePropertyChanged("IsCancelButonVisible");
+            this.RaisePropertyChanged(null);
         }
     }
 }
