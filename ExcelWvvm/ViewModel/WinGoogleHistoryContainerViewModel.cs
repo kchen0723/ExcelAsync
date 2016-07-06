@@ -6,7 +6,7 @@ using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using ExcelWvvm.Entities;
-//using AutoMapper;
+using Mapster;
 
 namespace ExcelWvvm.ViewModel
 {
@@ -42,8 +42,7 @@ namespace ExcelWvvm.ViewModel
             if (this.CurrentViewModel is GoogleHistoryViewModel)
             {
                 GoogleHistoryViewModel gh = this.CurrentViewModel as GoogleHistoryViewModel;
-                //Mapper.Initialize(cfg => cfg.CreateMap<GoogleHistoryViewModel, GoogleHistory>());
-                //this.m_history = Mapper.Map<GoogleHistory>(gh);
+                this.m_history = gh.Adapt<GoogleHistory>();
                 this.m_history.OnRetrievedDataHandler = History_OnRetrievedData;
                 this.m_history.ExecuteAsync();
                 this.CurrentViewModel = new LoadingViewModel();
