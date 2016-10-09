@@ -15,6 +15,9 @@ namespace ExcelAsync
             {
 			
 
+
+
+
 	
                 return ExcelDna.Integration.ExcelDnaUtil.Application as Application;
             }
